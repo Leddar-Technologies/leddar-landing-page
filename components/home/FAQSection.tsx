@@ -8,7 +8,7 @@ export function FAQSection() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-cream px-16 py-20 max-lg:px-8 max-lg:py-[60px]">
+    <section className="bg-cream px-4 py-20 sm:px-8 max-lg:py-[60px] lg:px-16">
       <div className="mx-auto max-w-[800px]">
         <header className="mb-12 text-center">
           <SectionLabel text="HAVE A LOOK AT OUR FAQ" centered />
@@ -27,7 +27,7 @@ export function FAQSection() {
                 ].join(" ")}
               >
                 <button
-                  className="flex w-full items-center justify-between gap-4 bg-transparent px-6 py-5 text-left text-[15px] font-bold text-dark"
+                  className="flex w-full items-center justify-between gap-4 bg-transparent px-4 py-4 text-left text-[15px] font-bold text-dark sm:px-6 sm:py-5"
                   onClick={() => setOpen(isOpen ? -1 : index)}
                 >
                   <span>{faq.q}</span>
@@ -40,7 +40,7 @@ export function FAQSection() {
                     {isOpen ? "-" : "+"}
                   </span>
                 </button>
-                {isOpen && faq.a ? <div className="px-6 pb-5 text-sm leading-[1.7] text-dark/85">{faq.a}</div> : null}
+                {isOpen && faq.a ? <div className="px-4 pb-4 text-sm leading-[1.7] text-dark/85 sm:px-6 sm:pb-5">{faq.a}</div> : null}
               </article>
             );
           })}
@@ -48,7 +48,7 @@ export function FAQSection() {
 
         <div className="mt-8 text-center">
           <button className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-dark bg-transparent px-6 py-[11px] text-[13px] font-bold uppercase tracking-[0.4px] text-dark transition-all hover:bg-dark hover:text-white">
-            VIEW ALL FAQ ->
+            VIEW ALL FAQ {"\u2192"}
           </button>
         </div>
       </div>

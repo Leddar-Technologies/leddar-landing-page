@@ -19,9 +19,9 @@ export const solutionItems = [
 ] as const;
 
 export const metrics = [
-  { icon: "check", value: "203+", label: "Active Artisans" },
+  { icon: "check", value: "203+", label: "Active Artisans", featured: false },
   { icon: "chart", value: "97%", label: "Higher Productivity", featured: true },
-  { icon: "shield", value: "3,120", label: "Project Completed" },
+  { icon: "shield", value: "3,120", label: "Project Completed", featured: false },
 ] as const;
 
 export const faqs = [
@@ -45,18 +45,21 @@ export const features = [
     desc: "Work with skilled professionals you can trust - no guesswork.",
   },
   {
+    dark: false,
     icon: "stack",
     title: "Escrow-Backed",
     amber: "Payment",
     desc: "Track your projects, timelines, and deliverables in one place.",
   },
   {
+    dark: false,
     icon: "signal",
     title: "WhatsApp",
     amber: "Updates",
     desc: "Communicate clearly with artisans without middlemen or confusion.",
   },
   {
+    dark: false,
     icon: "shield",
     title: "Structured",
     amber: "Workflow",

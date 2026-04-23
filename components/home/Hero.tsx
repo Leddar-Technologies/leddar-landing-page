@@ -3,7 +3,7 @@ import { DrillIllustration, RollerIllustration } from "./Illustrations";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cream px-16 pb-[60px] pt-20 text-center max-lg:px-8">
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cream px-4 pb-[60px] pt-20 text-center sm:px-8 lg:px-16">
       <div className="absolute left-[-10px] top-1/2 z-[1] hidden w-[220px] -translate-y-1/2 animate-floatY max-lg:hidden">
         <RollerIllustration className="w-full" />
       </div>
@@ -11,8 +11,8 @@ export function Hero() {
         <DrillIllustration className="w-full" />
       </div>
 
-      <div className="relative z-[2] max-w-[700px]">
-        <h1 className="mb-5 font-serif text-[clamp(52px,6vw,80px)] font-black leading-[1.05] text-dark">
+      <div className="relative z-[2] w-full max-w-[700px]">
+        <h1 className="mb-5 font-serif text-[clamp(40px,11vw,80px)] font-black leading-[1.05] text-dark sm:text-[clamp(52px,6vw,80px)]">
           <span className="block italic text-amber">Production</span>
           You Can Finally Trust
         </h1>
@@ -20,14 +20,14 @@ export function Hero() {
           Work with verified artisans, track production clearly, and build without the usual stress.
         </p>
 
-        <div className="mx-auto mb-12 flex max-w-[460px] items-center overflow-hidden rounded-xl bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
+        <div className="mx-auto mb-12 flex w-full max-w-[460px] flex-col overflow-hidden rounded-xl bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)] sm:flex-row sm:items-center">
           <input
             type="email"
             placeholder="Type your email"
-            className="flex-1 border-none bg-transparent px-5 py-[14px] text-sm text-dark outline-none placeholder:text-stone"
+            className="w-full flex-1 border-none bg-transparent px-5 py-[14px] text-sm text-dark outline-none placeholder:text-stone"
           />
-          <button className="whitespace-nowrap bg-amber px-6 py-[14px] text-[13px] font-bold uppercase tracking-[0.4px] text-dark transition-colors hover:bg-[#e8960f]">
-            JOIN THE WAITLIST ->
+          <button className="whitespace-nowrap bg-amber px-6 py-[14px] text-[13px] font-bold uppercase tracking-[0.4px] text-dark transition-colors hover:bg-[#e8960f] sm:px-5">
+            JOIN THE WAITLIST {"\u2192"}
           </button>
         </div>
 

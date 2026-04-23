@@ -10,13 +10,13 @@ const iconMap: Record<string, string> = {
 
 export function HowItWorks() {
   return (
-    <section className="bg-cream px-16 py-20 max-lg:px-8 max-lg:py-[60px]">
-      <div className="mx-auto flex max-w-[1200px] items-start gap-20 max-lg:flex-col">
+    <section className="bg-cream px-4 py-20 sm:px-8 max-lg:py-[60px] lg:px-16">
+      <div className="mx-auto flex max-w-[1200px] items-start gap-12 lg:gap-20 max-lg:flex-col">
         <div className="flex-1">
           <SectionLabel text="HOW IT WORKS" />
-          <h2 className="mb-9 font-serif text-[clamp(34px,4vw,52px)] font-black leading-[1.1] text-dark">
+          <h2 className="mb-9 font-serif text-[clamp(30px,8vw,52px)] font-black leading-[1.1] text-dark">
             Here's How <span className="italic text-amber">Leddar</span>
-            <br />
+            <br className="hidden sm:block" />
             Works.
           </h2>
 
@@ -43,7 +43,8 @@ export function HowItWorks() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
             </div>
 
-            <div className="flex min-h-[320px]">
+            <div className="min-h-[320px] max-sm:overflow-x-auto">
+              <div className="flex max-sm:min-w-[520px]">
               <aside className="w-40 shrink-0 bg-dark py-4">
                 <div className="mb-2.5 border-b border-[rgba(255,255,255,0.08)] px-4 pb-[14px] text-[13px] font-extrabold tracking-[1px] text-amber">
                   LEDDAR
@@ -104,6 +105,7 @@ export function HowItWorks() {
                   readOnly
                   className="w-full rounded-md border border-[rgba(54,27,20,0.12)] bg-white px-2.5 py-[7px] text-[10px] text-dark"
                 />
+              </div>
               </div>
             </div>
           </div>

@@ -2,11 +2,11 @@ import { SectionLabel } from "./SectionLabel";
 
 export function ArtisansSection() {
   return (
-    <section className="bg-cream px-16 py-20 max-lg:px-8 max-lg:py-[60px]">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-20 max-lg:flex-col">
+    <section className="bg-cream px-4 py-20 sm:px-8 max-lg:py-[60px] lg:px-16">
+      <div className="mx-auto flex max-w-[1200px] items-center gap-12 lg:gap-20 max-lg:flex-col">
         <div className="relative w-full max-w-[420px]">
-          <div className="absolute bottom-[-40px] left-[-20px] h-[260px] w-[260px] rounded-full bg-[#FFE8A3]" />
-          <div className="relative h-[420px] overflow-hidden rounded-[20px] bg-[linear-gradient(160deg,#c4b09a_0%,#a08060_50%,#7a6050_100%)]">
+          <div className="absolute bottom-[-20px] left-[-8px] h-[180px] w-[180px] rounded-full bg-[#FFE8A3] sm:bottom-[-40px] sm:left-[-20px] sm:h-[260px] sm:w-[260px]" />
+          <div className="relative h-[min(96vw,420px)] overflow-hidden rounded-[20px] bg-[linear-gradient(160deg,#c4b09a_0%,#a08060_50%,#7a6050_100%)]">
             <svg viewBox="0 0 300 420" fill="none" className="absolute inset-0 h-full w-full">
               <rect width="300" height="420" fill="url(#artGrad)" />
               <rect x="40" y="60" width="220" height="160" rx="8" fill="rgba(100,70,40,0.3)" />
@@ -32,18 +32,14 @@ export function ArtisansSection() {
           <SectionLabel text="FOR ARTISANS" />
           <h2 className="mb-[18px] font-serif text-[clamp(32px,3.5vw,48px)] font-black leading-[1.1] text-dark">
             Better Opportunities
-            <br />
+            <br className="hidden sm:block" />
             For Serious <span className="italic text-amber">Artisans</span>
           </h2>
           <p className="mb-8 max-w-[420px] text-[15px] leading-[1.75] text-muted">
-            We're building LEDDAR alongside real artisans
-            <br />
-            and real clients - solving real problems from
-            <br />
-            the ground up.
+            We're building LEDDAR alongside real artisans and real clients, solving real problems from the ground up.
           </p>
           <button className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-dark bg-transparent px-6 py-[11px] text-[13px] font-bold uppercase tracking-[0.4px] text-dark transition-all hover:bg-dark hover:text-white">
-            START FREE TRIAL ->
+            START FREE TRIAL {"\u2192"}
           </button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 export function WaitlistCTA() {
   return (
-    <section className="mx-auto max-w-[1200px] bg-cream px-16 pb-20 max-lg:px-8 max-lg:pb-[60px]">
-      <div className="relative flex flex-col gap-8 overflow-hidden rounded-[24px] bg-dark px-20 py-[72px] max-lg:px-10 max-lg:py-12">
+    <section className="mx-auto max-w-[1200px] bg-cream px-4 pb-20 sm:px-8 max-lg:pb-[60px] lg:px-16">
+      <div className="relative flex flex-col gap-8 overflow-hidden rounded-[24px] bg-dark px-5 py-10 sm:px-10 sm:py-12 lg:px-20 lg:py-[72px]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(201,146,42,0.35)_0%,transparent_60%),radial-gradient(ellipse_at_20%_80%,rgba(245,166,35,0.15)_0%,transparent_50%)]" />
 
         <svg className="absolute inset-0 h-full w-full opacity-10" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid slice">
@@ -28,19 +28,19 @@ export function WaitlistCTA() {
           </h2>
           <p className="text-[15px] leading-[1.7] text-[rgba(255,243,214,0.6)]">
             We're opening access in phases to keep onboarding high
-            <br />
+            <br className="hidden sm:block" />
             quality for both brands and artisans.
           </p>
         </div>
 
-        <div className="relative z-[2] flex max-w-[440px] overflow-hidden rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.08)]">
+        <div className="relative z-[2] flex w-full max-w-[440px] flex-col overflow-hidden rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.08)] sm:flex-row">
           <input
             type="email"
             placeholder="Type your email"
-            className="flex-1 border-none bg-transparent px-5 py-[14px] text-sm text-white outline-none placeholder:text-[rgba(255,243,214,0.4)]"
+            className="w-full flex-1 border-none bg-transparent px-5 py-[14px] text-sm text-white outline-none placeholder:text-[rgba(255,243,214,0.4)]"
           />
           <button className="whitespace-nowrap bg-amber px-6 py-[14px] text-[13px] font-bold uppercase tracking-[0.4px] text-dark transition-colors hover:bg-[#e8960f]">
-            JOIN THE WAITLIST ->
+            JOIN THE WAITLIST {"\u2192"}
           </button>
         </div>
       </div>

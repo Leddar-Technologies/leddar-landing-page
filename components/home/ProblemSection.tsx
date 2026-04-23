@@ -2,11 +2,11 @@ import { CalendarIllustration } from "./Illustrations";
 
 export function ProblemSection() {
   return (
-    <section className="bg-cream px-16 max-lg:px-8">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-20 py-20 max-lg:flex-col max-lg:py-[60px]">
+    <section className="bg-cream px-4 sm:px-8 lg:px-16">
+      <div className="mx-auto flex max-w-[1200px] items-center gap-12 py-16 lg:gap-20 lg:py-20 max-lg:flex-col max-lg:py-[60px]">
         <div className="relative flex basis-[420px] items-center justify-center max-lg:basis-auto">
-          <div className="relative flex h-[380px] w-[380px] items-center justify-center overflow-visible rounded-full bg-[#FFE8A3]">
-            <CalendarIllustration className="w-[320px] animate-floatY drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
+          <div className="relative flex h-[min(78vw,380px)] w-[min(78vw,380px)] items-center justify-center overflow-visible rounded-full bg-[#FFE8A3]">
+            <CalendarIllustration className="w-[min(66vw,320px)] animate-floatY drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
           </div>
         </div>
 
@@ -18,14 +18,10 @@ export function ProblemSection() {
             Too Uncertain
           </h2>
           <p className="mb-8 max-w-[400px] text-[15px] leading-[1.75] text-muted">
-            Too many brands rely on scattered chats,
-            <br />
-            unclear pricing, and unverified production
-            <br />
-            partners.
+            Too many brands rely on scattered chats, unclear pricing, and unverified production partners.
           </p>
           <button className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-dark bg-transparent px-6 py-[11px] text-[13px] font-bold uppercase tracking-[0.4px] text-dark transition-all hover:bg-dark hover:text-white">
-            LEARN MORE ->
+            LEARN MORE {"\u2192"}
           </button>
         </div>
       </div>
