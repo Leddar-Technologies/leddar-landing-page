@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Square } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -9,31 +9,30 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const links = [
-    { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
-    { label: 'Products', to: '/products', hasDropdown: true },
-    { label: 'Resources', to: '/resources' },
-    { label: 'Policies', to: '/policies' },
+    { label: "Home", to: "/" },
+    { label: "About", to: "/about" },
+    { label: "Products", to: "/products", hasDropdown: true },
+    { label: "Resources", to: "/resources" },
+    { label: "Policies", to: "/policies" },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#FFF7E9]/95 backdrop-blur-md shadow-sm' : 'bg-transparent'
+        scrolled
+          ? "bg-[#FFF7E9]/95 backdrop-blur-md shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-18">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-[#361B14] rounded-md flex items-center justify-center">
-              <Square className="w-3.5 h-3.5 text-[#FBB13A]" fill="#FBB13A" />
-            </div>
-            <span className="font-heading font-bold text-xl text-[#361B14]">leddar</span>
+          <Link to="/" className="flex items-center px-2 py-1.5 rounded-lg hover:bg-[#FBB13A]/10 transition-colors duration-200 group">
+            <img src="/leddar-logo.svg" alt="Leddar" className="h-8 w-auto group-hover:scale-105 transition-transform duration-200" />            
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -43,8 +42,8 @@ export default function Navbar() {
                 to={link.to}
                 className={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${
                   location.pathname === link.to
-                    ? 'text-[#FBB13A]'
-                    : 'text-[#361B14]/80 hover:text-[#361B14]'
+                    ? "text-[#FBB13A]"
+                    : "text-[#361B14]/80 hover:text-[#361B14]"
                 }`}
               >
                 {link.label}
