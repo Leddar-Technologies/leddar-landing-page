@@ -49,27 +49,43 @@ function HeroSection() {
       {/* Subtle background orb (hidden on small screens) */}
       <div className="absolute bottom-0 right-0 hidden md:block w-[700px] h-[500px] bg-[#FBB13A]/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-36 pb-12 sm:pb-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-28 sm:pt-36 lg:pt-36 pb-12 sm:pb-20 relative z-10">
         {/* Headline */}
-        <div className="flex flex-col items-center text-center gap-0 mb-10">
-          <h1 className="text-[#361B14] text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-semibold font-['Poppins'] capitalize leading-tight">
+        <div className="relative flex flex-col items-center text-center gap-0 mb-10 px-6 md:px-0">
+          <h1 className="relative z-10 text-[#361B14] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold md:font-semibold font-['Poppins'] capitalize leading-tight">
             Hiring <span className="text-[#FBB13A]">Artisans</span>
           </h1>
-          <h1 className="text-[#361B14] text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-semibold font-['Poppins'] capitalize leading-tight">
+          <h1 className="relative z-10 text-[#361B14] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold md:font-semibold font-['Poppins'] capitalize leading-tight">
             Shouldn't Feel Like
           </h1>
-          <h1 className="text-[#361B14] text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-semibold font-['Poppins'] capitalize leading-tight">
+          <h1 className="relative z-10 text-[#361B14] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold md:font-semibold font-['Poppins'] capitalize leading-tight">
             a Gamble
           </h1>
-          <p className="mt-6 max-w-xl text-[#361B14]/60 text-base sm:text-lg font-normal font-['Poppins'] leading-8">
-            LEDDAR connects brands with verified artisans through a transparent,
-            escrow-backed production platform.
-          </p>
         </div>
 
         {/* CTA row */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-16">
-          <div className="w-full max-w-md sm:max-w-lg flex items-center rounded-full border border-[#361B14]/20 bg-white/70 backdrop-blur-sm overflow-hidden pr-1 pl-6 h-14">
+        <div className="flex items-center justify-center mb-16">
+          {/* XS & SM: stacked input + button */}
+          <div className="w-[90%] max-w-[18rem] mx-auto flex flex-col gap-3 md:hidden">
+            <div className="w-full flex items-center rounded-2xl border border-[#361B14]/20 bg-white/70 backdrop-blur-sm px-3 py-2 h-auto">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email"
+                className="bg-transparent text-[#361B14] text-sm font-['Poppins'] placeholder-[#361B14]/40 focus:outline-none flex-1 min-w-0 py-1.5"
+              />
+            </div>
+            <button className="w-full h-10 px-4 bg-[#FBB13A] rounded-lg flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors">
+              <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
+                Sign Up Now
+              </span>
+              <ArrowRight className="w-4 h-4 text-[#361B14]" />
+            </button>
+          </div>
+
+          {/* MD+: inline input + button */}
+          <div className="hidden md:flex w-full max-w-lg items-center rounded-full border border-[#361B14]/20 bg-white/70 backdrop-blur-sm overflow-hidden pr-1 pl-6 h-14">
             <input
               type="email"
               value={email}
@@ -399,7 +415,7 @@ function FeatureCardsSection() {
             ({ icon: Icon, title, titleAccent, desc, highlight }) => (
               <div
                 key={title}
-                className={`relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col items-center justify-center gap-8 hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_40px_rgba(0,0,0,0.06)] ${highlight ? "bg-[#FBB13A]" : "bg-white"}`}
+                className={`relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col items-center justify-center gap-8 hover:-translate-y-1 transition-transform duration-300 shadow-[0_4px_40px_rgba(0,0,0,0.06)] ${highlight ? "bg-[#C3974B]" : "bg-white"}`}
               >
                 {highlight && (
                   <div className="absolute inset-0 pointer-events-none">

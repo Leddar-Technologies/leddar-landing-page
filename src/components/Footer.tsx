@@ -71,8 +71,8 @@ export default function Footer() {
                 {title}
               </h4>
               <ul className="space-y-2.5">
-                {items.map((item) => (
-                  <li key={item}>
+                {items.map((item, i) => (
+                  <li key={`${title}-${item}-${i}`}>
                     <a
                       href="#"
                       className="text-sm text-[#361B14]/60 hover:text-[#361B14] transition-colors duration-200 flex items-center gap-1"
