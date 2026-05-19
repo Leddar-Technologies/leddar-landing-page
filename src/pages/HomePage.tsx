@@ -76,12 +76,17 @@ function HeroSection() {
                 className="bg-transparent text-[#361B14] text-sm font-['Poppins'] placeholder-[#361B14]/40 focus:outline-none flex-1 min-w-0 py-1.5"
               />
             </div>
-            <button className="w-full h-10 px-4 bg-[#FBB13A] rounded-lg flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors">
+            <a
+              href="https://brand.myleddar.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-10 px-4 bg-[#FBB13A] rounded-lg flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors"
+            >
               <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
                 Sign Up Now
               </span>
               <ArrowRight className="w-4 h-4 text-[#361B14]" />
-            </button>
+            </a>
           </div>
 
           {/* MD+: inline input + button */}
@@ -93,12 +98,17 @@ function HeroSection() {
               placeholder="Your email"
               className="bg-transparent text-[#361B14] text-sm font-['Poppins'] placeholder-[#361B14]/40 focus:outline-none flex-1 min-w-0"
             />
-            <button className="h-10 px-6 bg-[#FBB13A] rounded-full flex items-center gap-2 hover:bg-[#f0a520] transition-colors ml-1 shrink-0">
+            <a
+              href="https://brand.myleddar.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 px-6 bg-[#FBB13A] rounded-full flex items-center gap-2 hover:bg-[#f0a520] transition-colors ml-1 shrink-0"
+            >
               <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
                 Sign Up Now
               </span>
               <ArrowRight className="w-4 h-4 text-[#361B14]" />
-            </button>
+            </a>
           </div>
         </div>
 
@@ -176,7 +186,13 @@ function BetterWaySection() {
               ))}
             </div>
 
-            <OutlineButton>Artisans Sign Up</OutlineButton>
+            <a
+              href="https://artisan.myleddar.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <OutlineButton>Artisans Sign Up</OutlineButton>
+            </a>
           </div>
         </div>
       </div>
@@ -229,7 +245,13 @@ function EscrowSection() {
               ))}
             </div>
 
-            <OutlineButton>Artisans Sign Up</OutlineButton>
+            <a
+              href="https://artisan.myleddar.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <OutlineButton>Artisans Sign Up</OutlineButton>
+            </a>
           </div>
 
           {/* Right: image */}
@@ -589,9 +611,15 @@ function ArtisansCTASection() {
               ))}
             </div>
 
-            <OutlineButton className="w-full sm:w-auto">
-              Artisans Sign Up
-            </OutlineButton>
+            <a
+              href="https://artisan.myleddar.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <OutlineButton className="w-full sm:w-auto">
+                Artisans Sign Up
+              </OutlineButton>
+            </a>
           </div>
         </div>
       </div>
@@ -647,12 +675,17 @@ function WaitlistSection() {
                 placeholder="Enter your email address"
                 className="flex-1 bg-transparent text-white text-sm sm:text-base font-['Poppins'] placeholder-white/50 focus:outline-none px-3 sm:px-0 py-2.5 sm:py-0 min-w-0 rounded-lg sm:rounded-none"
               />
-              <button className="w-full sm:w-auto h-10 sm:h-full px-4 sm:px-6 bg-[#FBB13A] rounded-lg sm:rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] active:bg-[#e09515] transition-all duration-200 sm:shrink-0">
+              <a
+                href="https://brand.myleddar.com/signup"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto h-10 sm:h-full px-4 sm:px-6 bg-[#FBB13A] rounded-lg sm:rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] active:bg-[#e09515] transition-all duration-200 sm:shrink-0"
+              >
                 <span className="text-[#361B14] text-xs sm:text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
                   Brand Sign Up
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
