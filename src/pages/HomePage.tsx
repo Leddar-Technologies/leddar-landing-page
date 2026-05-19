@@ -134,7 +134,7 @@ function BetterWaySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left: image */}
           <div className="relative">
-            <div className="absolute -inset-4 bg-amber-100 rounded-[40px]" />
+            <div className="absolute -inset-4 bg-amber-100 rounded-[40px] hidden lg:block" />
             <div className="relative rounded-[32px] overflow-hidden aspect-[4/3]">
               <img
                 src="/home-img-one.png"
