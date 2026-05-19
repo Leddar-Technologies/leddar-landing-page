@@ -31,8 +31,15 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-18">
-          <Link to="/" className="flex items-center px-2 py-1.5 rounded-lg hover:bg-[#FBB13A]/10 transition-colors duration-200 group">
-            <img src="/leddar-logo.svg" alt="Leddar" className="h-8 w-auto group-hover:scale-105 transition-transform duration-200" />            
+          <Link
+            to="/"
+            className="flex items-center px-2 py-1.5 rounded-lg hover:bg-[#FBB13A]/10 transition-colors duration-200 group"
+          >
+            <img
+              src="/leddar-logo.svg"
+              alt="Leddar"
+              className="h-8 w-auto group-hover:scale-105 transition-transform duration-200"
+            />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -53,12 +60,14 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:block">
-            <Link
-              to="/artisan"
+            <a
+              href="https://brand.myleddar.com/signup"
+              target="_blank"
+              rel="noreferrer"
               className="px-5 py-2.5 bg-white text-[#361B14] font-semibold text-sm rounded-full border border-[#361B14]/10 shadow-sm hover:bg-[#FBB13A] hover:border-[#FBB13A] hover:text-white transition-all duration-200"
             >
               Get Started
-            </Link>
+            </a>
           </div>
 
           <button
@@ -83,13 +92,15 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              to="/artisan"
+            <a
+              href="https://brand.myleddar.com/signup"
+              target="_blank"
+              rel="noreferrer"
               onClick={() => setOpen(false)}
               className="mt-2 px-5 py-2.5 bg-[#361B14] text-white font-semibold text-sm rounded-full text-center"
             >
               Get Started
-            </Link>
+            </a>
           </div>
         </div>
       )}

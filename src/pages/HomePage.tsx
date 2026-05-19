@@ -15,7 +15,7 @@ import {
 function SectionTag({ children }: { children: React.ReactNode }) {
   return (
     <div className="inline-flex items-center gap-3">
-      <div className="w-5 h-5 bg-[#FBB13A] rounded-sm flex-shrink-0" />
+      <img src="/home-vector.png" alt="" className="w-5 h-3 flex-shrink-0" />
       <span className="text-[#361B14] text-sm font-medium font-['Poppins'] uppercase leading-4 tracking-widest">
         {children}
       </span>
@@ -121,24 +121,10 @@ function BetterWaySection() {
             <div className="absolute -inset-4 bg-amber-100 rounded-[40px]" />
             <div className="relative rounded-[32px] overflow-hidden aspect-[4/3]">
               <img
-                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900"
+                src="/home-img-one.png"
                 alt="Artisan at work"
                 className="w-full h-full object-cover"
               />
-            </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg px-5 py-4 flex items-center gap-3 z-10">
-              <div className="w-10 h-10 bg-[#FBB13A]/20 rounded-full flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 text-[#FBB13A]" />
-              </div>
-              <div>
-                <p className="text-[#361B14] text-sm font-semibold font-['Poppins']">
-                  Verified Artisans
-                </p>
-                <p className="text-[#361B14]/50 text-xs font-['Poppins']">
-                  203+ active professionals
-                </p>
-              </div>
             </div>
           </div>
 
@@ -232,10 +218,10 @@ function EscrowSection() {
 
           {/* Right: image */}
           <div className="relative">
-            <div className="absolute inset-0 bg-amber-100 rounded-[40px] translate-x-4 translate-y-4" />
-            <div className="relative w-full aspect-square max-w-sm mx-auto rounded-[40px] overflow-hidden shadow-[0px_20px_60px_rgba(0,0,0,0.08)]">
+            <div />
+            <div className="relative">
               <img
-                src="https://images.pexels.com/photos/6476260/pexels-photo-6476260.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src="/escrow-lock.png"
                 alt="Secure payments"
                 className="w-full h-full object-cover"
               />
@@ -267,7 +253,7 @@ function StatsSection() {
           {stats.map(({ value, label, icon: Icon, highlight }) => (
             <div
               key={label}
-              className={`relative rounded-3xl overflow-hidden h-80 flex flex-col items-center justify-center gap-8 shadow-[0_4px_40px_rgba(0,0,0,0.06)] ${highlight ? "bg-[#FBB13A]" : "bg-white"}`}
+              className={`relative rounded-3xl overflow-hidden h-80 flex flex-col items-center justify-center gap-8 shadow-[0_4px_40px_rgba(0,0,0,0.06)] ${highlight ? "bg-[#C3974B]" : "bg-white"}`}
             >
               {highlight && (
                 <div className="absolute inset-0 pointer-events-none">
@@ -360,9 +346,9 @@ function HowItWorksSection() {
           {/* Right: dashboard preview */}
           <div className="relative rounded-[28px] overflow-hidden aspect-video shadow-[0_8px_60px_rgba(0,0,0,0.1)]">
             <img
-              src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1000"
+              src="/brand-dashboard.png"
               alt="Dashboard preview"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain object-center bg-[#f3efe9]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/30 to-transparent" />
           </div>
@@ -547,7 +533,7 @@ function ArtisansCTASection() {
             <div className="absolute bottom-0 left-8 w-80 h-80 bg-amber-100 rounded-full -z-0" />
             <div className="relative z-10 rounded-[32px] overflow-hidden aspect-[4/3] shadow-[0_8px_60px_rgba(0,0,0,0.08)]">
               <img
-                src="https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/public\woman-home.png"
                 alt="Artisan crafting"
                 className="w-full h-full object-cover"
               />
@@ -604,35 +590,21 @@ function WaitlistSection() {
   return (
     <section className="bg-[#FFF7E9] pb-24 pt-6">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative bg-[#361B14] rounded-[40px] overflow-hidden px-12 lg:px-20 py-20 lg:py-24">
-          {/* Background decoration */}
+        <div
+          className="relative rounded-[40px] overflow-hidden px-6 sm:px-8 lg:px-20 py-16 sm:py-20 lg:py-24 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('/dark-brown-fabric-motion-texture-background.png')",
+          }}
+        >
+          {/* Multi-layer overlay for text readability and visual depth */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FBB13A]/8 rounded-full blur-[100px]" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#FBB13A]/5 rounded-full blur-[80px]" />
-            <svg
-              className="absolute inset-0 w-full h-full opacity-5"
-              viewBox="0 0 1280 550"
-              preserveAspectRatio="xMidYMid slice"
-            >
-              <path
-                d="M0,280 C350,80 800,480 1280,220"
-                stroke="#FBB13A"
-                strokeWidth="1.5"
-                fill="none"
-              />
-              <path
-                d="M0,340 C450,140 900,540 1280,280"
-                stroke="#FBB13A"
-                strokeWidth="1"
-                fill="none"
-              />
-              <path
-                d="M0,200 C300,0 700,400 1280,160"
-                stroke="#FBB13A"
-                strokeWidth="1"
-                fill="none"
-              />
-            </svg>
+            {/* Base dark overlay */}
+            <div className="absolute inset-0 bg-[#361B14]/70" />
+            {/* Accent gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#361B14]/50 via-transparent to-[#1a0d0a]/40" />
+            {/* Subtle gold accent at top right */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#FBB13A]/8 rounded-full blur-3xl" />
           </div>
 
           <div className="relative z-10 max-w-lg">
@@ -640,27 +612,27 @@ function WaitlistSection() {
               <span className="text-white">Let's get started</span>
             </SectionTag>
 
-            <div className="mt-8 mb-6 flex flex-col gap-5">
-              <h2 className="text-5xl font-semibold font-['Poppins'] capitalize leading-tight">
+            <div className="mt-8 mb-8 flex flex-col gap-5">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-['Poppins'] capitalize leading-tight">
                 <span className="text-white">Join the </span>
                 <span className="text-[#FBB13A]">Waitlist.</span>
               </h2>
-              <p className="text-stone-400 text-lg font-normal font-['Poppins'] leading-8">
+              <p className="text-white/75 text-base sm:text-lg font-normal font-['Poppins'] leading-8 max-w-md">
                 We're opening access in phases to keep onboarding high quality
                 for both brands and artisans.
               </p>
             </div>
 
-            <div className="flex items-center rounded-full overflow-hidden border border-white/10 bg-stone-800 pr-1 pl-6 h-14">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 rounded-2xl sm:rounded-full overflow-hidden border border-white/20 bg-white/5 backdrop-blur-sm p-3 sm:p-1.5 sm:pr-1 sm:pl-6 h-auto sm:h-14">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="bg-transparent text-white/60 text-sm font-['Poppins'] placeholder-white/40 focus:outline-none flex-1 min-w-0"
+                className="flex-1 bg-transparent text-white text-sm sm:text-base font-['Poppins'] placeholder-white/50 focus:outline-none px-3 sm:px-0 py-2.5 sm:py-0 min-w-0 rounded-lg sm:rounded-none"
               />
-              <button className="h-10 px-6 bg-[#FBB13A] rounded-full flex items-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0">
-                <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
+              <button className="w-full sm:w-auto h-10 sm:h-full px-4 sm:px-6 bg-[#FBB13A] rounded-lg sm:rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] active:bg-[#e09515] transition-all duration-200 sm:shrink-0">
+                <span className="text-[#361B14] text-xs sm:text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
                   Brand Sign Up
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />

@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import PoliciesPage from './pages/PoliciesPage';
 import ResourcesPage from './pages/ResourcesPage';
 import ProductsPage from './pages/ProductsPage';
+import TermsCondition from './pages/TermsCondition';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ function Layout() {
           <Route path="/policies" element={<PoliciesPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/termsCondition" element={<TermsCondition />} />
         </Routes>
       </div>
       <Footer />
