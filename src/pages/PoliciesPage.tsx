@@ -64,6 +64,7 @@ function HeroSection() {
         </div>
       </Container>
     </section>
+          url: '/docs/terms-condition.pdf',
   );
 }
 
@@ -71,6 +72,7 @@ function DownloadCardsSection() {
   const cards = [
     {
       icon: Shield,
+          url: '/docs/payment-refundment-cancellation-policy.pdf',
       title: "Privacy Policy",
       desc: "How we collect, use, and protect your data across our services and platform integrations.",
       size: "PDF 1.2MB",
