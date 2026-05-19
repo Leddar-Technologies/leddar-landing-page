@@ -73,8 +73,6 @@ function HeroSection() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/40 to-transparent" />
-
-          
         </div>
       </div>
     </section>
@@ -97,7 +95,7 @@ function ProductFeaturesSection() {
             </div>
             <div className="relative rounded-[24px] overflow-hidden aspect-video shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
               <img
-                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900"
+                src="/image_1.png"
                 alt="Product features"
                 className="w-full h-full object-cover"
               />
@@ -499,9 +497,9 @@ function FlowAndTestimonialSection() {
           {/* Right: experience card */}
           <div className="relative rounded-[24px] overflow-hidden min-h-[320px] shadow-[0_8px_40px_rgba(0,0,0,0.1)]">
             <img
-              src="https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=900"
+              src="/Image.png"
               alt="The experience for you"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-[50%_20%]"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#361B14]/10 to-[#361B14]/80" />
             <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between gap-4">
@@ -681,59 +679,47 @@ function WaitlistSection() {
 
   return (
     <section className="bg-[#FFF7E9] pb-24 pt-6">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative bg-[#361B14] rounded-[40px] overflow-hidden px-12 lg:px-20 py-20 lg:py-24">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FBB13A]/8 rounded-full blur-[100px]" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#FBB13A]/5 rounded-full blur-[80px]" />
-            <svg
-              className="absolute inset-0 w-full h-full opacity-5"
-              viewBox="0 0 1280 550"
-              preserveAspectRatio="xMidYMid slice"
-            >
-              <path
-                d="M0,280 C350,80 800,480 1280,220"
-                stroke="#FBB13A"
-                strokeWidth="1.5"
-                fill="none"
-              />
-              <path
-                d="M0,340 C450,140 900,540 1280,280"
-                stroke="#FBB13A"
-                strokeWidth="1"
-                fill="none"
-              />
-            </svg>
-          </div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className="relative rounded-[32px] sm:rounded-[40px] overflow-hidden px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('/dark-brown-fabric-motion-texture-background.png')",
+          }}
+        >
           <div className="relative z-10 max-w-lg">
-            <SectionTag light>The Goal Is Simple</SectionTag>
+            <SectionTag light>Let's get started</SectionTag>
 
-            <div className="mt-8 mb-6 flex flex-col gap-5">
-              <h2 className="text-3xl sm:text-5xl font-semibold font-['Poppins'] capitalize leading-tight">
-                <span className="text-white">Make Production Easier to </span>
+            <div className="mt-6 sm:mt-8 mb-6 flex flex-col gap-4 sm:gap-5">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-['Poppins'] capitalize leading-tight">
+                <span className="text-white">Production, You Can Finally </span>
                 <span className="text-[#FBB13A]">Trust.</span>
               </h2>
-              <p className="text-stone-400 text-lg font-normal font-['Poppins'] leading-8">
+              <p className="text-stone-400 text-sm sm:text-base lg:text-lg font-normal font-['Poppins'] leading-6 sm:leading-7 lg:leading-8">
                 We're opening access in phases to keep onboarding high quality
                 for both brands and artisans.
               </p>
             </div>
 
-            <div className="flex items-center rounded-full overflow-hidden border border-white/10 bg-stone-800 pr-1 pl-6 h-14">
+            <div className="flex flex-col sm:flex-row sm:items-center rounded-3xl sm:rounded-full overflow-hidden border border-white/10 bg-stone-800 p-2 sm:pr-1 sm:pl-6 gap-2 sm:gap-0">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="bg-transparent text-white/60 text-sm font-['Poppins'] placeholder-white/40 focus:outline-none flex-1 min-w-0"
+                className="bg-transparent text-white/60 text-sm font-['Poppins'] placeholder-white/40 focus:outline-none flex-1 min-w-0 px-3 py-3 sm:px-0 sm:py-0"
               />
-              <button className="h-10 px-6 bg-[#FBB13A] rounded-full flex items-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0">
+              <a
+                href="https://brand.myleddar.com/signup"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-11 sm:h-10 px-5 sm:px-6 bg-[#FBB13A] rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0 w-full sm:w-auto"
+              >
                 <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
                   Join the Waitlist
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

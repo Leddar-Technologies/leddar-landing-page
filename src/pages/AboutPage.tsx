@@ -665,29 +665,6 @@ function WaitlistSection() {
               "url('/dark-brown-fabric-motion-texture-background.png')",
           }}
         >
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FBB13A]/8 rounded-full blur-[100px]" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#FBB13A]/5 rounded-full blur-[80px]" />
-            <svg
-              className="absolute inset-0 w-full h-full opacity-5"
-              viewBox="0 0 1280 550"
-              preserveAspectRatio="xMidYMid slice"
-            >
-              <path
-                d="M0,280 C350,80 800,480 1280,220"
-                stroke="#FBB13A"
-                strokeWidth="1.5"
-                fill="none"
-              />
-              <path
-                d="M0,340 C450,140 900,540 1280,280"
-                stroke="#FBB13A"
-                strokeWidth="1"
-                fill="none"
-              />
-            </svg>
-          </div>
-
           <div className="relative z-10 max-w-lg">
             <SectionTag light>Let's get started</SectionTag>
 
@@ -710,12 +687,17 @@ function WaitlistSection() {
                 placeholder="Enter your email address"
                 className="bg-transparent text-white/60 text-sm font-['Poppins'] placeholder-white/40 focus:outline-none flex-1 min-w-0 px-3 py-3 sm:px-0 sm:py-0"
               />
-              <button className="h-11 sm:h-10 px-5 sm:px-6 bg-[#FBB13A] rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0 w-full sm:w-auto">
+              <a
+                href="https://brand.myleddar.com/signup"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-11 sm:h-10 px-5 sm:px-6 bg-[#FBB13A] rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0 w-full sm:w-auto"
+              >
                 <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
                   Join the Waitlist
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
