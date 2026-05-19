@@ -571,7 +571,7 @@ function ArtisansCTASection() {
             <div className="absolute bottom-0 left-8 w-80 h-80 bg-amber-100 rounded-full -z-0" />
             <div className="relative z-10 rounded-[32px] overflow-hidden aspect-[4/3] shadow-[0_8px_60px_rgba(0,0,0,0.08)]">
               <img
-                src="/public\woman-home.png"
+                src="/woman-home.png"
                 alt="Artisan crafting"
                 className="w-full h-full object-cover"
               />

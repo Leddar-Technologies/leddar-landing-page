@@ -20,7 +20,7 @@ function SectionTag({
 }) {
   return (
     <div className="inline-flex items-center gap-3">
-      <div className="w-5 h-5 bg-[#FBB13A] rounded-sm flex-shrink-0" />
+      <img src="/home-vector.png" alt="" className="w-5 h-3 flex-shrink-0" />
       <span
         className={`text-sm font-medium font-['Poppins'] uppercase leading-4 tracking-widest ${light ? "text-white" : "text-[#361B14]"}`}
       >
@@ -190,7 +190,7 @@ const whatItIs = {
   label: "What Leddar Is",
   tagline:
     "Leddar is a trust-led production platform that helps brands and artisans work together with clarity, security, and accountability at every step.",
-  img: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900",
+  img: "/carpenter-cutting.png",
 };
 
 const whatItIsNot = {
@@ -658,7 +658,13 @@ function WaitlistSection() {
   return (
     <section className="bg-[#FFF7E9] pb-24 pt-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative bg-[#361B14] rounded-[32px] sm:rounded-[40px] overflow-hidden px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24">
+        <div
+          className="relative rounded-[32px] sm:rounded-[40px] overflow-hidden px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('/dark-brown-fabric-motion-texture-background.png')",
+          }}
+        >
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FBB13A]/8 rounded-full blur-[100px]" />
             <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#FBB13A]/5 rounded-full blur-[80px]" />

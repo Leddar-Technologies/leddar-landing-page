@@ -22,7 +22,7 @@ function SectionTag({
 }) {
   return (
     <div className="inline-flex items-center gap-3">
-      <div className="w-5 h-5 bg-[#FBB13A] rounded-sm flex-shrink-0" />
+      <img src="/home-vector.png" alt="" className="w-5 h-3 flex-shrink-0" />
       <span
         className={`text-sm font-medium font-['Poppins'] uppercase leading-4 tracking-widest ${light ? "text-white" : "text-[#361B14]"}`}
       >
@@ -68,32 +68,13 @@ function HeroSection() {
         {/* Full-width photo banner, flush to bottom */}
         <div className="relative rounded-t-[30px] overflow-hidden aspect-video shadow-[0_-8px_60px_rgba(0,0,0,0.1)]">
           <img
-            src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1400"
+            src="/dashboard_1.png"
             alt="Product dashboard"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/40 to-transparent" />
 
-          {/* Liquid-glass stat pills */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center flex-wrap gap-3 items-center">
-            {[
-              { v: "203+", l: "Artisans Available" },
-              { v: "97%", l: "Higher Productivity" },
-              { v: "3,120", l: "Projects Completed" },
-            ].map(({ v, l }) => (
-              <div
-                key={l}
-                className="flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
-              >
-                <span className="text-[#FBB13A] text-sm font-bold font-['Poppins'] uppercase tracking-wide">
-                  {v}
-                </span>
-                <span className="text-white/90 text-sm font-medium font-['Poppins'] uppercase tracking-wide">
-                  {l}
-                </span>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </div>
     </section>
