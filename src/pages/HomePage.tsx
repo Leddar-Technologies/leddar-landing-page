@@ -550,11 +550,7 @@ function FAQSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="flex justify-center mt-10">
-          <OutlineButton>View All FAQ</OutlineButton>
-        </div>
+        </div>        
       </div>
     </section>
   );
@@ -627,8 +623,8 @@ function ArtisansCTASection() {
   );
 }
 
-/* ── WAITLIST ── */
-function WaitlistSection() {
+/* ── NEWSLETTER ── */
+function Newsletter() {
   const [email, setEmail] = useState("");
 
   return (
@@ -640,16 +636,7 @@ function WaitlistSection() {
             backgroundImage:
               "url('/dark-brown-fabric-motion-texture-background.png')",
           }}
-        >
-          {/* Multi-layer overlay for text readability and visual depth */}
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Base dark overlay */}
-            <div className="absolute inset-0 bg-[#361B14]/70" />
-            {/* Accent gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#361B14]/50 via-transparent to-[#1a0d0a]/40" />
-            {/* Subtle gold accent at top right */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#FBB13A]/8 rounded-full blur-3xl" />
-          </div>
+        >      
 
           <div className="relative z-10 max-w-lg">
             <SectionTag>
@@ -659,11 +646,11 @@ function WaitlistSection() {
             <div className="mt-8 mb-8 flex flex-col gap-5">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-['Poppins'] capitalize leading-tight">
                 <span className="text-white">Join the </span>
-                <span className="text-[#FBB13A]">Waitlist.</span>
+                <span className="text-[#FBB13A]">Newsletter.</span>
               </h2>
               <p className="text-white/75 text-base sm:text-lg font-normal font-['Poppins'] leading-8 max-w-md">
-                We're opening access in phases to keep onboarding high quality
-                for both brands and artisans.
+                Get product updates, new artisan opportunities, and practical
+                production insights delivered to your inbox.
               </p>
             </div>
 
@@ -676,13 +663,13 @@ function WaitlistSection() {
                 className="flex-1 bg-transparent text-white text-sm sm:text-base font-['Poppins'] placeholder-white/50 focus:outline-none px-3 sm:px-0 py-2.5 sm:py-0 min-w-0 rounded-lg sm:rounded-none"
               />
               <a
-                href="https://brand.myleddar.com/signup"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto h-10 sm:h-full px-4 sm:px-6 bg-[#FBB13A] rounded-lg sm:rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] active:bg-[#e09515] transition-all duration-200 sm:shrink-0"
               >
                 <span className="text-[#361B14] text-xs sm:text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
-                  Brand Sign Up
+                  Subscribe
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
               </a>
@@ -705,7 +692,7 @@ export default function HomePage() {
       <FeatureCardsSection />
       <FAQSection />
       <ArtisansCTASection />
-      <WaitlistSection />
+      <Newsletter />
     </main>
   );
 }

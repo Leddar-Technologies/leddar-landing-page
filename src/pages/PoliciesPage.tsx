@@ -64,7 +64,6 @@ function HeroSection() {
         </div>
       </Container>
     </section>
-          url: '/docs/terms-condition.pdf',
   );
 }
 
@@ -72,7 +71,6 @@ function DownloadCardsSection() {
   const cards = [
     {
       icon: Shield,
-          url: '/docs/payment-refundment-cancellation-policy.pdf',
       title: "Privacy Policy",
       desc: "How we collect, use, and protect your data across our services and platform integrations.",
       size: "PDF 1.2MB",
@@ -85,6 +83,7 @@ function DownloadCardsSection() {
       desc: "The legal framework governing the use of the Leddar ecosystem and professional software tools.",
       size: "PDF 0.8MB",
       label: "Download PDF",
+      url: "/docs/terms-condition.pdf",
     },
     {
       icon: CreditCard,
@@ -92,6 +91,7 @@ function DownloadCardsSection() {
       desc: "Transparent guidelines regarding transaction processing, subscription billing, and refund eligibility.",
       size: "PDF 0.5MB",
       label: "Download Policy",
+      url: "/docs/payment-refundment-cancellation-policy.pdf",
     },
   ];
 
