@@ -16,7 +16,7 @@ export default function Navbar() {
   const links = [
     { label: "Home", to: "/" },
     { label: "About", to: "/about" },
-    { label: "Products", to: "/products", hasDropdown: true },
+    { label: "Products", to: "/products" },
     { label: "Resources", to: "/resources" },
     { label: "Policies", to: "/policies" },
   ];
