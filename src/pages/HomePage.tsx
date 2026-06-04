@@ -550,7 +550,7 @@ function FAQSection() {
               </div>
             </div>
           ))}
-        </div>        
+        </div>
       </div>
     </section>
   );
@@ -636,8 +636,7 @@ function Newsletter() {
             backgroundImage:
               "url('/dark-brown-fabric-motion-texture-background.png')",
           }}
-        >      
-
+        >
           <div className="relative z-10 max-w-lg">
             <SectionTag>
               <span className="text-white">Let's get started</span>

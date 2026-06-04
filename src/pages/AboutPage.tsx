@@ -68,32 +68,32 @@ function HeroSection() {
         {/* Photo banner */}
         <div className="relative max-w-4xl mx-auto rounded-[30px] overflow-hidden aspect-video shadow-[0_8px_60px_rgba(0,0,0,0.12)]">
           <img
-            src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            src="/about-img.png"
             alt="Team collaborating"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain bg-[#2a1611]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/50 to-transparent" />
+        </div>
 
-          {/* Aligned liquid-glass stat pills — bottom-left row */}
-          <div className="absolute bottom-6 left-6 flex flex-wrap gap-3 items-center">
-            {[
-              { v: "203+", l: "Artisans Available" },
-              { v: "97%", l: "Higher Productivity" },
-              { v: "78%", l: "Job Success Rate" },
-            ].map(({ v, l }) => (
-              <div
-                key={l}
-                className="flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
-              >
-                <span className="text-[#FBB13A] text-sm font-bold font-['Poppins'] uppercase tracking-wide">
-                  {v}
-                </span>
-                <span className="text-white/90 text-sm font-medium font-['Poppins'] uppercase tracking-wide">
-                  {l}
-                </span>
-              </div>
-            ))}
-          </div>
+        {/* Aligned liquid-glass stat pills — just beneath the banner */}
+        <div className="max-w-4xl mx-auto mt-6 flex flex-wrap gap-3 items-center justify-center text-center">
+          {[
+            { v: "203+", l: "Artisans Available" },
+            { v: "97%", l: "Higher Productivity" },
+            { v: "78%", l: "Job Success Rate" },
+          ].map(({ v, l }) => (
+            <div
+              key={l}
+              className="flex items-center gap-2 bg-white/70 backdrop-blur-md border border-white/80 rounded-full px-4 py-2 shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+            >
+              <span className="text-[#FBB13A] text-sm font-bold font-['Poppins'] uppercase tracking-wide">
+                {v}
+              </span>
+              <span className="text-[#361B14] text-sm font-medium font-['Poppins'] uppercase tracking-wide">
+                {l}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
