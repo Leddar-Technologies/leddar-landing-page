@@ -104,15 +104,15 @@ function HeroSection() {
 function OurStorySection() {
   const problems = [
     {
-      img: "https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg?auto=compress&cs=tinysrgb&w=600",
+      img: "/tailoring-items-arrangement-flat-lay_1.png",
       text: "Brands struggle to find reliable production partners.",
     },
     {
-      img: "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=600",
+      img: "/medium-shot-man-painting-watercolors_1.png",
       text: "Artisans struggle to access serious, repeatable work.",
     },
     {
-      img: "https://images.pexels.com/photos/6476260/pexels-photo-6476260.jpeg?auto=compress&cs=tinysrgb&w=600",
+      img: "/medium-shot-artisan-doing-woodcutting_1.png",
       text: "The market has skill. The market has demand. What it lacks is structure.",
     },
   ];
@@ -132,41 +132,72 @@ function OurStorySection() {
           </p>
         </div>
 
-        {/* Problem cards — horizontal, expand-on-hover */}
-        <div className="relative max-w-4xl mx-auto flex flex-col lg:flex-row gap-4 items-stretch">
-          {problems.map((card, i) => (
-            <div
-              key={i}
-              className="group relative overflow-hidden rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] cursor-pointer
-                         flex-1 lg:flex-[1] lg:hover:flex-[1.6]
-                         transition-all duration-500 ease-in-out
-                         min-h-[320px] lg:min-h-[400px]"
-              style={{ minWidth: 0 }}
-            >
-              <img
-                src={card.img}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#361B14]/85" />
-
-              {/* Text — always visible at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between gap-4">
-                <p className="text-white text-base font-normal font-['Poppins'] leading-6 flex-1">
-                  {card.text}
-                </p>
-
-                {/* Arrow button — hidden by default, slides in on hover */}
+        {/* Problem cards — vertical stack with divider */}
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-6 items-center">
+            <div className="flex flex-col gap-20 items-center lg:items-end lg:pr-12">
+              {problems.slice(0, 2).map((card, i) => (
                 <div
-                  className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FBB13A] flex items-center justify-center
+                  key={i}
+                  className="group relative overflow-hidden rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] cursor-pointer
+                             w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[360px] aspect-[4/5]"
+                >
+                  <img
+                    src={card.img}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#361B14]/85" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between gap-4">
+                    <p className="text-white text-base font-normal font-['Poppins'] leading-6 flex-1">
+                      {card.text}
+                    </p>
+                    <div
+                      className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FBB13A] flex items-center justify-center
                                 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
                                 transition-all duration-300 ease-out"
-                >
-                  <ArrowRight className="w-4 h-4 text-[#361B14]" />
+                    >
+                      <ArrowRight className="w-4 h-4 text-[#361B14]" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden lg:flex items-stretch justify-center">
+              <div className="relative w-px h-full min-h-[520px] bg-[#361B14]/20">
+                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#FBB13A] shadow-[0_0_0_6px_rgba(251,177,58,0.15)]" />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center lg:pl-6">
+              <div className="group relative overflow-hidden rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] cursor-pointer
+                          w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-[4/5]">
+                <img
+                  src={problems[2].img}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#361B14]/85" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between gap-4">
+                  <p className="text-white text-base font-normal font-['Poppins'] leading-6 flex-1">
+                    {problems[2].text}
+                  </p>
+                  <div
+                    className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FBB13A] flex items-center justify-center
+                                opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0
+                                transition-all duration-300 ease-out"
+                  >
+                    <ArrowRight className="w-4 h-4 text-[#361B14]" />
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="lg:hidden mt-6">
+            <div className="h-px w-full bg-[#361B14]/10" />
+          </div>
         </div>
 
         {/* Closing statement — no fill, border only, hover turns arrow orange */}
@@ -321,9 +352,7 @@ function WhatLeddarIsSection() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/30 to-transparent" />
-            </div>
-
-            <OutlineButton>Learn More</OutlineButton>
+            </div>          
           </div>
 
           {/* Right card — fixed height with scroll */}
