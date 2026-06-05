@@ -30,23 +30,6 @@ function SectionTag({
   );
 }
 
-function OutlineButton({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <button
-      className={`self-start px-8 py-4 rounded-full border border-[#361B14] inline-flex items-center gap-3 text-sm font-medium font-['Poppins'] uppercase tracking-wide text-[#361B14] hover:bg-[#361B14] hover:text-white transition-all duration-200 group ${className}`}
-    >
-      {children}
-      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-    </button>
-  );
-}
-
 /* ── HERO ── */
 function HeroSection() {
   return (
@@ -171,8 +154,10 @@ function OurStorySection() {
             </div>
 
             <div className="flex items-center justify-center lg:pl-6">
-              <div className="group relative overflow-hidden rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] cursor-pointer
-                          w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-[4/5]">
+              <div
+                className="group relative overflow-hidden rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] cursor-pointer
+                          w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-[4/5]"
+              >
                 <img
                   src={problems[2].img}
                   alt=""
@@ -313,14 +298,19 @@ function WhatLeddarIsSection() {
             {/* Toggle button — stacked on mobile, top right on larger screens */}
             <button
               onClick={() => setMode(mode === "is" ? "isnot" : "is")}
-              className={`relative sm:absolute sm:top-8 sm:right-8 self-start sm:self-auto px-4 py-2 rounded-full text-xs font-semibold font-['Poppins'] uppercase tracking-widest border transition-all duration-200
+              aria-label={
+                isNot
+                  ? "Switch to What Leddar Is"
+                  : "Switch to What Leddar Is Not"
+              }
+              className={`relative sm:absolute sm:top-6 sm:right-6 self-end sm:self-auto rounded-full border transition-all duration-200 w-11 h-11
                 ${
                   isNot
-                    ? "bg-[#361B14] text-white border-[#361B14] hover:bg-[#4a2a20]"
-                    : "bg-white text-[#361B14] border-[#361B14]/25 hover:border-[#361B14]"
+                    ? "bg-[#361B14] border-[#361B14] hover:bg-[#4a2a20]"
+                    : "bg-white border-[#361B14]/25 hover:border-[#361B14]"
                 }`}
             >
-              {isNot ? "← What Leddar Is" : "What Leddar Is Not →"}
+              <img src="/east-arrow.png" alt="" className="w-5 h-5 mx-auto" />
             </button>
 
             <div className="pr-0 sm:pr-8 lg:pr-36">
@@ -352,7 +342,7 @@ function WhatLeddarIsSection() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/30 to-transparent" />
-            </div>          
+            </div>
           </div>
 
           {/* Right card — fixed height with scroll */}
@@ -441,17 +431,20 @@ function HowWeWorkSection() {
               <span className="text-[#FBB13A]">Work</span>
             </h2>
           </div>
-          <OutlineButton>Get a Demo</OutlineButton>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col justify-between
-                         bg-white hover:bg-[#FBB13A]
+              className={`group relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col justify-between
+                         ${
+                           title === "Verification-first"
+                             ? "bg-[#C3974B] hover:bg-[#FBB13A]"
+                             : "bg-white hover:bg-[#FBB13A]"
+                         }
                          shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(251,177,58,0.25)]
-                         hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                         hover:-translate-y-1 transition-all duration-300 cursor-pointer`}
             >
               {/* Decorative orbs — revealed on hover */}
               <div className="absolute -right-8 -top-8 w-40 h-40 bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -632,7 +625,13 @@ function MilestonesSection() {
           {phases.map(({ phase, title, points, goal }, i) => (
             <div
               key={phase}
-              className={`rounded-2xl p-6 border flex flex-col gap-4 ${i === 0 ? "bg-white border-[#FBB13A]/40" : "bg-white/60 border-neutral-100"}`}
+              className={`rounded-2xl p-6 border flex flex-col gap-4 transition-all duration-300 cursor-pointer
+                ${
+                  i === 0
+                    ? "bg-white border-[#FBB13A]/40 shadow-[0_4px_24px_rgba(251,177,58,0.12)]"
+                    : "bg-white/60 border-neutral-100"
+                }
+                hover:bg-white hover:border-[#FBB13A]/40 hover:shadow-[0_4px_24px_rgba(251,177,58,0.12)]`}
             >
               <div className="flex items-center gap-3">
                 <div
@@ -680,50 +679,52 @@ function MilestonesSection() {
   );
 }
 
-/* ── FINAL CTA / WAITLIST ── */
-function WaitlistSection() {
+/* ── NEWSLETTER ── */
+function Newsletter() {
   const [email, setEmail] = useState("");
 
   return (
     <section className="bg-[#FFF7E9] pb-24 pt-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div
-          className="relative rounded-[32px] sm:rounded-[40px] overflow-hidden px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 bg-cover bg-center bg-no-repeat"
+          className="relative rounded-[40px] overflow-hidden px-6 sm:px-8 lg:px-20 py-16 sm:py-20 lg:py-24 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
               "url('/dark-brown-fabric-motion-texture-background.png')",
           }}
         >
           <div className="relative z-10 max-w-lg">
-            <SectionTag light>Let's get started</SectionTag>
+            <SectionTag>
+              <span className="text-white">Let's get started</span>
+            </SectionTag>
 
-            <div className="mt-6 sm:mt-8 mb-6 flex flex-col gap-4 sm:gap-5">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-['Poppins'] capitalize leading-tight">
-                <span className="text-white">Production, You Can Finally </span>
-                <span className="text-[#FBB13A]">Trust.</span>
+            <div className="mt-8 mb-8 flex flex-col gap-5">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-['Poppins'] capitalize leading-tight">
+                <span className="text-white">Join the </span>
+                <span className="text-[#FBB13A]">Newsletter.</span>
               </h2>
-              <p className="text-stone-400 text-sm sm:text-base lg:text-lg font-normal font-['Poppins'] leading-6 sm:leading-7 lg:leading-8">
-                We're opening access in phases to keep onboarding high quality
-                for both brands and artisans.
+              <p className="text-white/75 text-base sm:text-lg font-normal font-['Poppins'] leading-8 max-w-md">
+                Get product updates, new artisan opportunities, and practical
+                production insights delivered to your inbox.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center rounded-3xl sm:rounded-full overflow-hidden border border-white/10 bg-stone-800 p-2 sm:pr-1 sm:pl-6 gap-2 sm:gap-0">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 rounded-2xl sm:rounded-full overflow-hidden border border-white/20 bg-white/5 backdrop-blur-sm p-3 sm:p-1.5 sm:pr-1 sm:pl-6 h-auto sm:h-14">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="bg-transparent text-white/60 text-sm font-['Poppins'] placeholder-white/40 focus:outline-none flex-1 min-w-0 px-3 py-3 sm:px-0 sm:py-0"
+                className="flex-1 bg-transparent text-white text-sm sm:text-base font-['Poppins'] placeholder-white/50 focus:outline-none px-3 sm:px-0 py-2.5 sm:py-0 min-w-0 rounded-lg sm:rounded-none"
               />
               <a
-                href="https://brand.myleddar.com/signup"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-11 sm:h-10 px-5 sm:px-6 bg-[#FBB13A] rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0 w-full sm:w-auto"
+                className="w-full sm:w-auto h-10 sm:h-full px-4 sm:px-6 bg-[#FBB13A] rounded-lg sm:rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] active:bg-[#e09515] transition-all duration-200 sm:shrink-0"
               >
-                <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
-                  Join the Waitlist
+                <span className="text-[#361B14] text-xs sm:text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
+                  Subscribe
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
               </a>
@@ -743,7 +744,7 @@ export default function AboutPage() {
       <WhatLeddarIsSection />
       <HowWeWorkSection />
       <MilestonesSection />
-      <WaitlistSection />
+      <Newsletter />
     </main>
   );
 }

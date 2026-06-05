@@ -135,9 +135,15 @@ function ProductFeaturesSection() {
               artisans work with more confidence.
             </p>
 
-            <OutlineButton className="w-full sm:w-auto">
-              Get Started
-            </OutlineButton>
+            <a
+              href="https://artisan.myleddar.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <OutlineButton className="w-full sm:w-auto">
+                Get Started
+              </OutlineButton>
+            </a>
           </div>
         </div>
       </div>
@@ -183,9 +189,16 @@ function WhatProductDoesSection() {
             </p>
             <div className="mt-auto">
               <button className="h-14 px-8 bg-[#FBB13A] rounded-full inline-flex items-center gap-3 hover:bg-[#f0a520] transition-colors">
-                <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide">
-                  Sign Up Now
-                </span>
+                <a
+                  href="https://brand.myleddar.com/signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide">
+                    Sign Up Now
+                  </span>
+                </a>
+
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
               </button>
             </div>
@@ -673,50 +686,52 @@ function WhatMakesDifferentSection() {
   );
 }
 
-/* ── FINAL CTA ── */
-function WaitlistSection() {
+/* ── NEWSLETTER ── */
+function Newsletter() {
   const [email, setEmail] = useState("");
 
   return (
     <section className="bg-[#FFF7E9] pb-24 pt-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div
-          className="relative rounded-[32px] sm:rounded-[40px] overflow-hidden px-5 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 bg-cover bg-center bg-no-repeat"
+          className="relative rounded-[40px] overflow-hidden px-6 sm:px-8 lg:px-20 py-16 sm:py-20 lg:py-24 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
               "url('/dark-brown-fabric-motion-texture-background.png')",
           }}
         >
           <div className="relative z-10 max-w-lg">
-            <SectionTag light>Let's get started</SectionTag>
+            <SectionTag>
+              <span className="text-white">Let's get started</span>
+            </SectionTag>
 
-            <div className="mt-6 sm:mt-8 mb-6 flex flex-col gap-4 sm:gap-5">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-['Poppins'] capitalize leading-tight">
-                <span className="text-white">Production, You Can Finally </span>
-                <span className="text-[#FBB13A]">Trust.</span>
+            <div className="mt-8 mb-8 flex flex-col gap-5">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-['Poppins'] capitalize leading-tight">
+                <span className="text-white">Join the </span>
+                <span className="text-[#FBB13A]">Newsletter.</span>
               </h2>
-              <p className="text-stone-400 text-sm sm:text-base lg:text-lg font-normal font-['Poppins'] leading-6 sm:leading-7 lg:leading-8">
-                We're opening access in phases to keep onboarding high quality
-                for both brands and artisans.
+              <p className="text-white/75 text-base sm:text-lg font-normal font-['Poppins'] leading-8 max-w-md">
+                Get product updates, new artisan opportunities, and practical
+                production insights delivered to your inbox.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center rounded-3xl sm:rounded-full overflow-hidden border border-white/10 bg-stone-800 p-2 sm:pr-1 sm:pl-6 gap-2 sm:gap-0">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 rounded-2xl sm:rounded-full overflow-hidden border border-white/20 bg-white/5 backdrop-blur-sm p-3 sm:p-1.5 sm:pr-1 sm:pl-6 h-auto sm:h-14">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="bg-transparent text-white/60 text-sm font-['Poppins'] placeholder-white/40 focus:outline-none flex-1 min-w-0 px-3 py-3 sm:px-0 sm:py-0"
+                className="flex-1 bg-transparent text-white text-sm sm:text-base font-['Poppins'] placeholder-white/50 focus:outline-none px-3 sm:px-0 py-2.5 sm:py-0 min-w-0 rounded-lg sm:rounded-none"
               />
               <a
-                href="https://brand.myleddar.com/signup"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-11 sm:h-10 px-5 sm:px-6 bg-[#FBB13A] rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] transition-colors shrink-0 w-full sm:w-auto"
+                className="w-full sm:w-auto h-10 sm:h-full px-4 sm:px-6 bg-[#FBB13A] rounded-lg sm:rounded-full flex items-center justify-center gap-2 hover:bg-[#f0a520] active:bg-[#e09515] transition-all duration-200 sm:shrink-0"
               >
-                <span className="text-[#361B14] text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
-                  Join the Waitlist
+                <span className="text-[#361B14] text-xs sm:text-sm font-semibold font-['Poppins'] uppercase tracking-wide whitespace-nowrap">
+                  Subscribe
                 </span>
                 <ArrowRight className="w-4 h-4 text-[#361B14]" />
               </a>
@@ -737,7 +752,7 @@ export default function ProductsPage() {
       <HowItWorksSection />
       <FlowAndTestimonialSection />
       <WhatMakesDifferentSection />
-      <WaitlistSection />
+      <Newsletter />
     </main>
   );
 }
