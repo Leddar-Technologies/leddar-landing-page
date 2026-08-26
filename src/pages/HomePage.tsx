@@ -217,7 +217,7 @@ function EscrowSection() {
 
             <p className="text-[#361B14]/60 text-xl font-normal font-['Poppins'] leading-8">
               Payments are held safely in escrow and only released when work is
-              completed and approved — giving both sides full confidence.
+              completed and approved, giving both sides full confidence.
             </p>
 
             {/* Trust indicators */}
@@ -403,7 +403,7 @@ function FeatureCardsSection() {
       icon: Shield,
       title: "Verified Artisans",
       titleAccent: "",
-      desc: "Work with skilled professionals you can trust — no guesswork.",
+      desc: "Work with skilled professionals you can trust without the guesswork.",
       highlight: true,
     },
     {
@@ -483,7 +483,7 @@ function FeatureCardsSection() {
 const faqs = [
   {
     q: "What is LEDDAR?",
-    a: "LEDDAR is a platform that connects clients with trusted artisans and ensures every project is handled with transparency, structure, and secure payments through an escrow system.",
+    a: "LEDDAR connects brands with trusted artisans and ensures every project is handled with transparency, structure, and secure payments through an escrow system.",
   },
   {
     q: "Who is Leddar for?",
@@ -491,15 +491,11 @@ const faqs = [
   },
   {
     q: "What are the benefits of using the escrow payment system?",
-    a: "Our escrow system ensures both parties have complete protection — funds are held securely until work is delivered and approved, making every transaction safe and transparent.",
+    a: "Our escrow system ensures both parties have complete protection, funds are held securely until work is delivered and approved, making every transaction safe and transparent.",
   },
   {
     q: "Will I get updates during production?",
     a: "Yes. You will receive real-time updates via WhatsApp and your dashboard throughout the entire production process.",
-  },
-  {
-    q: "What happens after I join the waitlist?",
-    a: "You'll receive a personal invite to onboard once a slot opens. We keep onboarding intentionally high-quality to maintain platform standards.",
   },
   {
     q: "What kind of services will be available?",
@@ -586,8 +582,8 @@ function ArtisansCTASection() {
             </h2>
 
             <p className="text-[#361B14]/60 text-base sm:text-lg font-normal font-['Poppins'] leading-7">
-              We're building LEDDAR alongside real artisans and real clients —
-              solving real problems from the ground up.
+              We're building LEDDAR alongside real artisans and real brands to
+              solve real problems from the ground up.
             </p>
 
             <div className="flex flex-col gap-3">

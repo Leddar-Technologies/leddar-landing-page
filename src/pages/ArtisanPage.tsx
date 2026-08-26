@@ -98,7 +98,7 @@ function SecurePaymentsSection() {
               <span className="text-[#FBB13A]">Secure</span> Escrow Payments
             </h2>
             <p className="text-[#361B14]/60 text-sm leading-relaxed mb-8">
-              Payments are held safely and only releases when work is completed as agreed.
+              Payments are held safely in escrow and only released when work is completed and approved, giving both sides full confidence.
             </p>
             <button className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#361B14] text-[#361B14] font-semibold text-sm rounded-full hover:bg-[#361B14] hover:text-white transition-all">
               Artisan Sign Up <ArrowRight className="w-4 h-4" />
@@ -131,7 +131,7 @@ function StatsSection() {
   const stats = [
     { value: '203+', label: 'Active Artisans', highlight: false },
     { value: '97%', label: 'Higher Productivity', highlight: true },
-    { value: '3,120', label: 'Project Completed', highlight: false },
+    { value: '3,120', label: 'Products Completed', highlight: false },
   ];
 
   return (

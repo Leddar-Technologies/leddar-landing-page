@@ -43,7 +43,7 @@ function HeroSection() {
           </h1>
           <p className="text-[#361B14]/60 text-sm sm:text-base md:text-lg lg:text-xl font-['Poppins'] leading-7 sm:leading-8">
             We're creating the infrastructure that makes artisan production
-            reliable, transparent, and scalable — for brands and craftspeople
+            reliable, transparent, and scalable, for brands and craftspeople
             alike.
           </p>
         </div>
@@ -313,7 +313,7 @@ function WhatLeddarIsSection() {
               <img src="/east-arrow.png" alt="" className="w-5 h-5 mx-auto" />
             </button>
 
-            <div className="pr-0 sm:pr-8 lg:pr-36">
+            <div className="pr-0 sm:pr-8">
               <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold font-['Poppins'] capitalize leading-tight mb-5 transition-all duration-300">
                 {isNot ? (
                   <>
