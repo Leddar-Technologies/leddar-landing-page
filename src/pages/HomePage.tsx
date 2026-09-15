@@ -163,13 +163,13 @@ function BetterWaySection() {
               <span className="text-[#FBB13A]">Better</span>
               <span className="text-[#361B14]">
                 {" "}
-                Way to Connect, Work & Get Paid
+                Way to Connect, Work, and Get Paid
               </span>
             </h2>
 
             <div className="flex flex-col gap-4">
               {[
-                "Get matched with verified brands",
+                "Get Matched with verified brands",
                 "Receive clear production requests",
                 "Get paid for work done",
               ].map((item, i) => (

@@ -28,14 +28,6 @@ function HeroSection() {
               Curated frameworks, technical guides, and industry insights
               designed to elevate your creative workflow.
             </p>
-            <div className="flex gap-4">
-              <button className="px-6 py-3 bg-[#FBB13A] text-[#361B14] font-bold text-sm rounded-full hover:bg-[#f0a520] transition-all shadow-md">
-                Browse →
-              </button>
-              <button className="px-6 py-3 text-[#361B14] font-semibold text-sm hover:text-[#FBB13A] transition-colors">
-                Contact
-              </button>
-            </div>
           </div>
           <div className="relative">
             <img
@@ -49,15 +41,22 @@ function HeroSection() {
   );
 }
 
-function SearchFilterSection() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [query, setQuery] = useState("");
-
+function SearchFilterSection({
+  query,
+  setQuery,
+  activeCategory,
+  setActiveCategory,
+}: {
+  query: string;
+  setQuery: (q: string) => void;
+  activeCategory: string;
+  setActiveCategory: (c: string) => void;
+}) {
   return (
     <div className="bg-[#FFF7E9] py-6">
       <Container>
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-          <div className="relative flex-1 max-w-lg">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-full max-w-lg">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#361B14]/40" />
             <input
               type="text"
@@ -67,7 +66,7 @@ function SearchFilterSection() {
               className="w-full pl-11 pr-5 py-3 bg-white border border-[#FFE4D4] rounded-xl text-sm text-[#361B14] placeholder-[#361B14]/40 focus:outline-none focus:border-[#FBB13A]"
             />
           </div>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap justify-center">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -145,43 +144,64 @@ function EssentialStartersSection() {
 const publications = [
   {
     tag: "Insights",
+    category: "Insights",
     title: "The Future of Creative Automation",
     desc: "Analyzing the shift from manual-labor to AI-orchestrated studio management.",
     icon: BarChart2,
   },
   {
     tag: "Platform",
+    category: "Guides",
     title: "Visualizing Data Pipelines",
     desc: "How to build intuitive reporting layers for complex project workflows.",
     icon: Layers,
   },
   {
     tag: "Case Study",
+    category: "Case Studies",
     title: "Studio X: Scaling Velocity",
     desc: "A look at how a boutique agency increased output by 40% in one quarter.",
     icon: Zap,
   },
   {
     tag: "Template",
+    category: "Templates",
     title: "Client Alignment Protocols",
     desc: "Checklists and documents to set expectations before a pixel is moved.",
     icon: FileText,
   },
   {
     tag: "Updates",
+    category: "Guides",
     title: "Season Release: Q4 2024",
     desc: "New multi-currency support and team-wide permission granularity.",
     icon: BookOpen,
   },
   {
     tag: "Methodology",
+    category: "Insights",
     title: "Radical Transparency Models",
     desc: "Balancing project visibility with focus time for creative teams.",
     icon: Users,
   },
 ];
 
-function LatestPublicationsSection() {
+function LatestPublicationsSection({
+  query,
+  activeCategory,
+}: {
+  query: string;
+  activeCategory: string;
+}) {
+  const filtered = publications.filter(({ category, title, desc }) => {
+    const matchesCategory =
+      activeCategory === "All" || category === activeCategory;
+    const matchesQuery =
+      query.trim() === "" ||
+      `${title} ${desc}`.toLowerCase().includes(query.trim().toLowerCase());
+    return matchesCategory && matchesQuery;
+  });
+
   return (
     <Section className="bg-[#FFF7E9]">
       <Container>
@@ -196,8 +216,13 @@ function LatestPublicationsSection() {
             View Archives
           </a>
         </div>
+        {filtered.length === 0 ? (
+          <p className="text-sm text-[#361B14]/50 text-center py-12">
+            No resources match your search.
+          </p>
+        ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {publications.map(({ tag, title, desc, icon: Icon }) => (
+          {filtered.map(({ tag, title, desc, icon: Icon }) => (
             <Card key={title} className="p-5 group cursor-pointer">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider">
@@ -219,6 +244,7 @@ function LatestPublicationsSection() {
             </Card>
           ))}
         </div>
+        )}
       </Container>
     </Section>
   );
@@ -319,12 +345,20 @@ function ResourceCTASection() {
 }
 
 export default function ResourcesPage() {
+  const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
   return (
     <main>
       <HeroSection />
-      <SearchFilterSection />
+      <SearchFilterSection
+        query={query}
+        setQuery={setQuery}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+      />
       <EssentialStartersSection />
-      <LatestPublicationsSection />
+      <LatestPublicationsSection query={query} activeCategory={activeCategory} />
       <VisualSeriesSection />
       <ResourceCTASection />
     </main>

@@ -311,7 +311,7 @@ function HowItWorksSection() {
           {steps.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col justify-between
+              className="group relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col
                          bg-white hover:bg-[#FBB13A]
                          shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(251,177,58,0.25)]
                          hover:-translate-y-1 transition-all duration-300 cursor-pointer"
@@ -324,7 +324,7 @@ function HowItWorksSection() {
                 <Icon className="w-7 h-7 text-[#FBB13A] group-hover:text-white transition-colors duration-300" />
               </div>
 
-              <div className="flex flex-col gap-3 relative z-10">
+              <div className="flex flex-col gap-3 relative z-10 mt-14">
                 <h3 className="text-xl font-semibold font-['Poppins'] capitalize leading-7 text-[#361B14] group-hover:text-white transition-colors duration-300">
                   {title}
                 </h3>
@@ -390,7 +390,7 @@ const flowSteps = [
   {
     label: "Approve Sample",
     sub: "Quality checked before full production",
-    indent: true,
+    indent: false,
     detail:
       "Before a full run begins, artisans produce a sample for your review. You can request adjustments, approve, or decline — keeping quality control in your hands before any significant materials are committed.",
     tags: [

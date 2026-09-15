@@ -258,7 +258,7 @@ const isNotFeatures = [
   {
     icon: X,
     title: "Not a directory or referral list",
-    desc: "We're not just connecting people — we're structuring the entire workflow from brief to delivery.",
+    desc: "We're not just connecting people, we're structuring the entire workflow from brief to delivery.",
   },
   {
     icon: X,
@@ -437,7 +437,7 @@ function HowWeWorkSection() {
           {steps.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className={`group relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col justify-between
+              className={`group relative rounded-3xl overflow-hidden h-80 p-8 flex flex-col
                          ${
                            title === "Verification-first"
                              ? "bg-[#C3974B] hover:bg-[#FBB13A]"
@@ -454,7 +454,7 @@ function HowWeWorkSection() {
                 <Icon className="w-7 h-7 text-[#FBB13A] group-hover:text-white transition-colors duration-300" />
               </div>
 
-              <div className="flex flex-col gap-3 relative z-10">
+              <div className="flex flex-col gap-3 relative z-10 mt-14">
                 <h3 className="text-xl font-semibold font-['Poppins'] capitalize leading-7 text-[#361B14] group-hover:text-white transition-colors duration-300">
                   {title}
                 </h3>
