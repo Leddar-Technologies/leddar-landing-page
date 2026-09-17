@@ -110,7 +110,7 @@ function ProductFeaturesSection() {
               {[
                 { v: "204+", l: "Active\nArtisans", icon: Users },
                 { v: "97%", l: "Higher\nProductivity", icon: TrendingUp },
-                { v: "3,120", l: "Projects\nCompleted", icon: CheckCircle },
+                { v: "3,120", l: "Products\nCompleted", icon: CheckCircle },
               ].map(({ v, l }) => (
                 <div key={v} className="flex flex-col gap-1">
                   <p className="text-[#361B14] text-3xl sm:text-4xl lg:text-6xl font-bold font-['Poppins'] leading-tight">
@@ -136,7 +136,7 @@ function ProductFeaturesSection() {
             </p>
 
             <a
-              href="https://artisan.myleddar.com/signup"
+              href="https://brand.myleddar.com/signup"
               target="_blank"
               rel="noopener noreferrer"
             >

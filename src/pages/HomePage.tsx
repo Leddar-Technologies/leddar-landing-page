@@ -45,7 +45,7 @@ function HeroSection() {
   const [email, setEmail] = useState("");
 
   return (
-    <section className="relative bg-amber-100 overflow-hidden">
+    <section className="relative bg-[#FFE7BC] overflow-hidden">
       {/* Subtle background orb (hidden on small screens) */}
       <div className="absolute bottom-0 right-0 hidden md:block w-[700px] h-[500px] bg-[#FBB13A]/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -430,7 +430,7 @@ function FeatureCardsSection() {
   ];
 
   return (
-    <section className="bg-amber-100 py-16">
+    <section className="bg-[#FFE7BC] py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {features.map(
@@ -507,7 +507,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-amber-100 py-24">
+    <section className="bg-[#FFE7BC] py-24">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col items-center gap-5 mb-14">
@@ -624,7 +624,7 @@ function Newsletter() {
   const [email, setEmail] = useState("");
 
   return (
-    <section className="bg-[#FFF7E9] pb-24 pt-6">
+    <section className="bg-[#FFE7BC] pb-24 pt-6">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div
           className="relative rounded-[40px] overflow-hidden px-6 sm:px-8 lg:px-20 py-16 sm:py-20 lg:py-24 bg-cover bg-center bg-no-repeat"

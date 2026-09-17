@@ -232,7 +232,7 @@ function FeatureGridSection() {
   ];
 
   return (
-    <Section className="bg-[#FFF7E9]">
+    <Section className="bg-[#FFE7BC]">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {features.map(({ icon: Icon, title, desc, highlight }) => (
@@ -266,7 +266,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <Section className="bg-[#FFF7E9]">
+    <Section className="bg-[#FFE7BC]">
       <Container>
         <SectionLabel>Have a Look at Our FAQ</SectionLabel>
         <h2 className="font-heading font-bold text-3xl lg:text-4xl text-[#361B14] mb-10 text-center">
@@ -341,7 +341,7 @@ function FinalCTASection() {
   const [email, setEmail] = useState('');
 
   return (
-    <Section className="bg-[#FFF7E9] pb-28">
+    <Section className="bg-[#FFE7BC] pb-28">
       <Container>
         <div className="relative bg-[#361B14] rounded-3xl overflow-hidden px-8 py-16 lg:px-16">
           <div className="absolute inset-0 pointer-events-none">
