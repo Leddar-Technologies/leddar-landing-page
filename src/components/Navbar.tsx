@@ -6,6 +6,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const currentPath = location.pathname.replace(/(.)\/+$/, "$1");
+  const isActive = (to: string) =>
+    currentPath === to ||
+    (to === "/resources" && currentPath.startsWith("/blog/"));
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -48,7 +52,7 @@ export default function Navbar() {
                 key={link.label}
                 to={link.to}
                 className={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === link.to
+                  isActive(link.to)
                     ? "text-[#FBB13A]"
                     : "text-[#361B14]/80 hover:text-[#361B14]"
                 }`}

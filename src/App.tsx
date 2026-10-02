@@ -9,6 +9,8 @@ import PoliciesPage from "./pages/PoliciesPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import ProductsPage from "./pages/ProductsPage";
 import TermsCondition from "./pages/TermsCondition";
+import BlogPostPage from "./pages/BlogPostPage";
+import { applyPageMeta } from "./seo";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -21,6 +23,10 @@ function ScrollToTop() {
 function Layout() {
   const { pathname } = useLocation();
   const showHeroTools = pathname === "/";
+
+  useEffect(() => {
+    applyPageMeta(pathname);
+  }, [pathname]);
 
   return (
     <div className="relative min-h-screen flex flex-col bg-[#FFF7E9]">
@@ -48,6 +54,7 @@ function Layout() {
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/termsCondition" element={<TermsCondition />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
         </Routes>
       </div>
       <Footer />
@@ -55,11 +62,20 @@ function Layout() {
   );
 }
 
+/* Router-agnostic app shell, so the build can render it to HTML with a static router */
+export function AppRoutes() {
+  return (
+    <>
+      <ScrollToTop />
+      <Layout />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <Layout />
+      <AppRoutes />
     </BrowserRouter>
   );
 }

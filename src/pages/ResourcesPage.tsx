@@ -1,18 +1,30 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Search,
   ArrowRight,
-  Zap,
   Layers,
-  BookOpen,
-  BarChart2,
-  Users,
-  FileText,
-  ChevronRight,
+  Factory,
+  Store,
+  Hammer,
+  type LucideIcon,
 } from "lucide-react";
 import { Section, Container, SectionLabel, Card } from "../components/ui";
+import {
+  blogCategories,
+  blogPosts,
+  type BlogCategory,
+  type BlogPost,
+} from "../data/blogPosts";
 
-const categories = ["All", "Guides", "Insights", "Templates", "Case Studies"];
+const categories = ["All", ...blogCategories];
+
+const categoryIcons: Record<BlogCategory, LucideIcon> = {
+  "Production & Manufacturing": Factory,
+  "Materials & Quality": Layers,
+  "Building Your Brand": Store,
+  "Craft & Artisans": Hammer,
+};
 
 function HeroSection() {
   return (
@@ -88,104 +100,11 @@ function SearchFilterSection({
   );
 }
 
-function EssentialStartersSection() {
-  return (
-    <Section className="bg-[#FFF7E9]">
-      <Container>
-        <SectionLabel>Foundation</SectionLabel>
-        <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#361B14] mb-8">
-          Essential Starters
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {[
-            {
-              icon: Zap,
-              tag: "Masterclass Guide",
-              title: "Production Architecture 101",
-              desc: "A structural framework for trust-led output, designed for high-performing creative units.",
-              link: "Access Blueprint",
-            },
-            {
-              icon: Layers,
-              tag: "Template Suite",
-              title: "The Professional Starter Kit",
-              desc: "Optimized assets for budgeting, scheduling, and high-level stakeholder reporting.",
-              link: "Download Kit",
-            },
-          ].map(({ icon: Icon, tag, title, desc, link }) => (
-            <Card key={title} className="p-8">
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-10 h-10 bg-[#FBB13A]/15 rounded-xl flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-[#FBB13A]" />
-                </div>
-                <span className="text-xs text-[#361B14]/50 uppercase tracking-wider">
-                  {tag}
-                </span>
-              </div>
-              <h3 className="font-heading font-bold text-xl text-[#361B14] mb-3">
-                {title}
-              </h3>
-              <p className="text-sm text-[#361B14]/60 leading-relaxed mb-6">
-                {desc}
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#361B14] hover:text-[#FBB13A] transition-colors uppercase tracking-wide"
-              >
-                {link} <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </Card>
-          ))}
-        </div>
-      </Container>
-    </Section>
-  );
+/* Everything a visitor might search a post by: title, summary, category, author and body */
+function searchText({ title, summary, category, author, blocks }: BlogPost) {
+  const body = blocks.map((b) => ("items" in b ? b.items.join(" ") : b.text));
+  return [title, summary, category, author, ...body].join(" ").toLowerCase();
 }
-
-const publications = [
-  {
-    tag: "Insights",
-    category: "Insights",
-    title: "The Future of Creative Automation",
-    desc: "Analyzing the shift from manual-labor to AI-orchestrated studio management.",
-    icon: BarChart2,
-  },
-  {
-    tag: "Platform",
-    category: "Guides",
-    title: "Visualizing Data Pipelines",
-    desc: "How to build intuitive reporting layers for complex project workflows.",
-    icon: Layers,
-  },
-  {
-    tag: "Case Study",
-    category: "Case Studies",
-    title: "Studio X: Scaling Velocity",
-    desc: "A look at how a boutique agency increased output by 40% in one quarter.",
-    icon: Zap,
-  },
-  {
-    tag: "Template",
-    category: "Templates",
-    title: "Client Alignment Protocols",
-    desc: "Checklists and documents to set expectations before a pixel is moved.",
-    icon: FileText,
-  },
-  {
-    tag: "Updates",
-    category: "Guides",
-    title: "Season Release: Q4 2024",
-    desc: "New multi-currency support and team-wide permission granularity.",
-    icon: BookOpen,
-  },
-  {
-    tag: "Methodology",
-    category: "Insights",
-    title: "Radical Transparency Models",
-    desc: "Balancing project visibility with focus time for creative teams.",
-    icon: Users,
-  },
-];
 
 function LatestPublicationsSection({
   query,
@@ -194,57 +113,56 @@ function LatestPublicationsSection({
   query: string;
   activeCategory: string;
 }) {
-  const filtered = publications.filter(({ category, title, desc }) => {
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+  const filtered = blogPosts.filter((post) => {
     const matchesCategory =
-      activeCategory === "All" || category === activeCategory;
-    const matchesQuery =
-      query.trim() === "" ||
-      `${title} ${desc}`.toLowerCase().includes(query.trim().toLowerCase());
-    return matchesCategory && matchesQuery;
+      activeCategory === "All" || post.category === activeCategory;
+    const haystack = searchText(post);
+    return matchesCategory && words.every((word) => haystack.includes(word));
   });
 
   return (
     <Section className="bg-[#FFF7E9]">
       <Container>
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#361B14]">
-            Latest Publications
-          </h2>
-          <a
-            href="#"
-            className="text-xs font-semibold text-[#361B14]/60 hover:text-[#FBB13A] uppercase tracking-widest transition-colors"
-          >
-            View Archives
-          </a>
-        </div>
+        <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#361B14] mb-8">
+          Latest Resources
+        </h2>
         {filtered.length === 0 ? (
           <p className="text-sm text-[#361B14]/50 text-center py-12">
             No resources match your search.
           </p>
         ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map(({ tag, title, desc, icon: Icon }) => (
-            <Card key={title} className="p-5 group cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider">
-                  {tag}
-                </span>
-                <ChevronRight className="w-4 h-4 text-[#361B14]/30 group-hover:text-[#FBB13A] transition-colors" />
-              </div>
-              <h4 className="font-heading font-semibold text-sm text-[#361B14] mb-2">
-                {title}
-              </h4>
-              <p className="text-xs text-[#361B14]/60 leading-relaxed mb-4">
-                {desc}
-              </p>
-              <div className="flex gap-2">
-                <div className="w-6 h-6 bg-[#FBB13A]/15 rounded-md flex items-center justify-center">
-                  <Icon className="w-3 h-3 text-[#FBB13A]" />
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map(({ slug, category, title, summary }) => {
+              const Icon = categoryIcons[category];
+              return (
+                <Card key={slug} className="relative p-5 group flex flex-col">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-6 h-6 bg-[#FBB13A]/15 rounded-md flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-3 h-3 text-[#FBB13A]" />
+                    </div>
+                    <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider">
+                      {category}
+                    </span>
+                  </div>
+                  <h4 className="font-heading font-semibold text-sm text-[#361B14] leading-6 mb-2">
+                    {title}
+                  </h4>
+                  <p className="text-xs text-[#361B14]/60 leading-relaxed mb-5 flex-1">
+                    {summary}
+                  </p>
+                  {/* The stretched ::after makes the whole card clickable */}
+                  <Link
+                    to={`/blog/${slug}`}
+                    aria-label={`View more: ${title}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#361B14] group-hover:text-[#FBB13A] uppercase tracking-wide transition-colors after:absolute after:inset-0 after:rounded-2xl"
+                  >
+                    View more <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </Card>
+              );
+            })}
+          </div>
         )}
       </Container>
     </Section>
@@ -370,7 +288,6 @@ export default function ResourcesPage() {
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
       />
-      <EssentialStartersSection />
       <LatestPublicationsSection query={query} activeCategory={activeCategory} />
       <VisualSeriesSection />
       <ResourceCTASection />

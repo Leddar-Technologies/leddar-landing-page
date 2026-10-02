@@ -402,12 +402,6 @@ function SupportCTASection() {
                 Contact Support →
               </a>
             </div>
-            <p className="text-white/60 text-sm mt-5">
-              Or email us at{" "}
-              <span className="text-white font-medium select-all">
-                support@myleddar.com
-              </span>
-            </p>
           </div>
         </div>
       </Container>
