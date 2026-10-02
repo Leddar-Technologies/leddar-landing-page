@@ -21,3 +21,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Tool folders that should stay off GitHub
+.bolt
+.claude
+.playwright-mcp
