@@ -250,7 +250,7 @@ function EscrowSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <OutlineButton>Artisans Sign Up</OutlineButton>
+              <OutlineButton>Brand Sign Up</OutlineButton>
             </a>
           </div>
 

@@ -31,8 +31,9 @@ function HeroSection() {
           </div>
           <div className="relative">
             <img
-              src="/sophisticated_abstract_3D_composition.png"
-              className="h-72 lg:h-80 w-full"
+              src="/leather-texture.jpg"
+              alt="Close-up of stitched brown leather"
+              className="h-72 lg:h-80 w-full rounded-3xl object-cover"
             />
           </div>
         </div>
@@ -336,6 +337,18 @@ function ResourceCTASection() {
             <p className="text-white/60 text-sm mb-8 leading-relaxed">
               Our specialists are available for consultation to help align our
               resources with your studio's unique structure.
+            </p>
+            <a
+              href="mailto:support@myleddar.com?subject=Resource%20consultation"
+              className="inline-block px-7 py-3.5 bg-[#FBB13A] text-[#361B14] font-bold text-sm rounded-full hover:bg-[#f0a520] transition-colors"
+            >
+              Talk to a Specialist →
+            </a>
+            <p className="text-white/60 text-sm mt-5">
+              Or email us at{" "}
+              <span className="text-white font-medium select-all">
+                support@myleddar.com
+              </span>
             </p>
           </div>
         </div>

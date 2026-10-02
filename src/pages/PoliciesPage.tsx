@@ -1,52 +1,26 @@
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   Shield,
   FileText,
   CreditCard,
   Download,
   Search,
-  ArrowRight,
-  Cookie,
-  Lock,
-  AlertCircle,
-  Globe,
+  Package,
+  UserCheck,
+  type LucideIcon,
 } from "lucide-react";
-import { Section, Container, Card, ImagePlaceholder } from "../components/ui";
+import { Section, Container, Card } from "../components/ui";
+import { policies, type PolicyBlock } from "../data/policies";
 
-const sidebarItems = [
-  { icon: FileText, label: "Terms of Service", active: true },
-  { icon: Shield, label: "Privacy Policy", active: false },
-  { icon: Cookie, label: "Cookie Policy", active: false },
-  { icon: AlertCircle, label: "Acceptable Use", active: false },
-  { icon: Lock, label: "Security", active: false },
-  { icon: Download, label: "Download All PDF", active: false, isLink: true },
-];
+const policyIcons: Record<string, LucideIcon> = {
+  terms: FileText,
+  privacy: Shield,
+  payment: CreditCard,
+  sample: Package,
+  kyc: UserCheck,
+};
 
-const termsContent = [
-  {
-    title: "1. Introduction",
-    body: "Welcome to Leddar. These Terms & Conditions govern your use of our website and software platform. By accessing or using our service, you agree to be bound by these terms. If you disagree with any part of the terms, you may not access the service.",
-    highlight:
-      '"We prioritize your project integrity and data security while providing professional-grade management tools. In return, we expect responsible usage and adherence to security protocols."',
-    highlightLabel: "Key Summary",
-  },
-  {
-    title: "2. Intellectual Property",
-    body: "The Service and its original content, features, and functionality are and will remain the exclusive property of Leddar and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without prior written consent.",
-    highlight: null,
-    highlightLabel: null,
-  },
-  {
-    title: "3. User Responsibilities",
-    bullets: [
-      "Account information must be accurate and current.",
-      "You are responsible for maintaining password confidentiality.",
-      "Users must comply with all local and international laws.",
-    ],
-    highlight: null,
-    highlightLabel: null,
-  },
-];
+const ALL_POLICIES_ZIP = "/docs/leddar-policies.zip";
 
 function HeroSection() {
   return (
@@ -134,9 +108,140 @@ function DownloadCardsSection() {
   );
 }
 
+function blockText(block: PolicyBlock) {
+  if (block.t === "table")
+    return [...block.head, ...block.rows.flat()].join(" ");
+  if ("items" in block) return block.items.join(" ");
+  return block.text;
+}
+
+/* Group a policy's blocks under their numbered headings so search can filter whole sections */
+function groupSections(blocks: PolicyBlock[]) {
+  const sections: PolicyBlock[][] = [];
+  blocks.forEach((block) => {
+    if (block.t === "h2" || sections.length === 0) sections.push([]);
+    sections[sections.length - 1].push(block);
+  });
+  return sections;
+}
+
+function PolicyBlockView({ block }: { block: PolicyBlock }) {
+  switch (block.t) {
+    case "h2":
+      return (
+        <h3 className="font-heading font-bold text-lg text-[#361B14] mb-3">
+          {block.text}
+        </h3>
+      );
+    case "h3":
+      return (
+        <h4 className="font-heading font-semibold text-base text-[#361B14] mt-5 mb-2">
+          {block.text}
+        </h4>
+      );
+    case "p":
+      return (
+        <p className="text-sm text-[#361B14]/70 leading-relaxed mb-4">
+          {block.text}
+        </p>
+      );
+    case "ul":
+      return (
+        <ul className="space-y-2 mb-4">
+          {block.items.map((item, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#FBB13A] flex-shrink-0 mt-2" />
+              <span className="text-sm text-[#361B14]/70 leading-relaxed">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+      );
+    case "ol":
+      return (
+        <ol className="space-y-2 mb-4">
+          {block.items.map((item, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <span className="text-sm font-semibold text-[#FBB13A] flex-shrink-0 w-4">
+                {i + 1}.
+              </span>
+              <span className="text-sm text-[#361B14]/70 leading-relaxed">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ol>
+      );
+    case "meta":
+      return (
+        <div className="mb-4">
+          {block.items.map((item, i) => (
+            <p key={i} className="text-sm text-[#361B14]/70 leading-relaxed">
+              {item}
+            </p>
+          ))}
+        </div>
+      );
+    case "table":
+      return (
+        <div className="overflow-x-auto mb-4 rounded-xl border border-[#FFE4D4]">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-[#361B14] text-white">
+              <tr>
+                {block.head.map((cell) => (
+                  <th key={cell} className="px-4 py-3 font-semibold">
+                    {cell}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white">
+              {block.rows.map((row, i) => (
+                <tr key={i} className="border-t border-[#FFE4D4]">
+                  {row.map((cell, j) => (
+                    <td
+                      key={j}
+                      className={`px-4 py-3 leading-relaxed align-top ${j === 0 ? "text-[#361B14] font-medium" : "text-[#361B14]/70"}`}
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+  }
+}
+
 function PolicyContentSection() {
-  const [activeSection, setActiveSection] = useState("Terms of Service");
+  const [activeId, setActiveId] = useState(policies[0].id);
   const [searchQuery, setSearchQuery] = useState("");
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const policy = policies.find((p) => p.id === activeId) ?? policies[0];
+  const sections = useMemo(() => groupSections(policy.blocks), [policy]);
+  const query = searchQuery.trim().toLowerCase();
+  const visibleSections = query
+    ? sections.filter((blocks) =>
+        blocks.some((block) => blockText(block).toLowerCase().includes(query)),
+      )
+    : sections;
+
+  const selectPolicy = (id: string) => {
+    setActiveId(id);
+    setSearchQuery("");
+    // Bring the new policy into view if its start is scrolled past (or sits below the sidebar on mobile)
+    const el = contentRef.current;
+    if (el) {
+      const top = el.getBoundingClientRect().top;
+      if (top < 0 || top > window.innerHeight * 0.6) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   return (
     <Section className="bg-[#FFF7E9]">
@@ -144,176 +249,117 @@ function PolicyContentSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl p-5 shadow-sm sticky top-24">
+            <div className="bg-white rounded-2xl p-5 shadow-sm lg:sticky lg:top-24">
               <p className="font-heading font-bold text-sm text-[#361B14] mb-1">
                 Policy Documentation
               </p>
-              <p className="text-xs text-[#361B14]/50 mb-5">Version 2.4.0</p>
+              <p className="text-xs text-[#361B14]/50 mb-5">Version 1.0</p>
               <nav className="space-y-1">
-                {sidebarItems.map(({ icon: Icon, label, isLink }) => (
-                  <button
-                    key={label}
-                    onClick={() => setActiveSection(label)}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors duration-200 ${
-                      activeSection === label
-                        ? "bg-[#FFF7E9] text-[#361B14] font-semibold"
-                        : "text-[#361B14]/60 hover:text-[#361B14] hover:bg-[#FFF7E9]/50"
-                    } ${isLink ? "mt-4 border-t border-[#FFE4D4] pt-4" : ""}`}
+                {policies.map(({ id, label }) => {
+                  const Icon = policyIcons[id] ?? FileText;
+                  return (
+                    <button
+                      key={id}
+                      onClick={() => selectPolicy(id)}
+                      aria-current={activeId === id ? "true" : undefined}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors duration-200 ${
+                        activeId === id
+                          ? "bg-[#FFF7E9] text-[#361B14] font-semibold"
+                          : "text-[#361B14]/60 hover:text-[#361B14] hover:bg-[#FFF7E9]/50"
+                      }`}
+                    >
+                      <Icon className="w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm">{label}</span>
+                    </button>
+                  );
+                })}
+                <div className="mt-4 border-t border-[#FFE4D4] pt-4">
+                  <a
+                    href={ALL_POLICIES_ZIP}
+                    download
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-[#361B14]/60 hover:text-[#361B14] hover:bg-[#FFF7E9]/50 transition-colors duration-200"
                   >
-                    <Icon className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{label}</span>
-                  </button>
-                ))}
+                    <Download className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm">Download All PDF</span>
+                  </a>
+                </div>
               </nav>
             </div>
           </div>
 
           {/* Main content */}
-          <div className="lg:col-span-6">
+          <div ref={contentRef} className="lg:col-span-9 scroll-mt-28">
             <div className="relative mb-6">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#361B14]/40" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search within Terms of Service..."
+                placeholder={`Search within ${policy.label}...`}
                 className="w-full pl-11 pr-5 py-3.5 bg-white border border-[#FFE4D4] rounded-xl text-sm text-[#361B14] placeholder-[#361B14]/40 focus:outline-none focus:border-[#FBB13A]"
               />
             </div>
 
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#361B14] mb-2">
-              Terms &amp; Conditions
-            </h2>
-            <p className="text-xs text-[#361B14]/50 mb-8">
-              Effective Date: January 1, 2024
-            </p>
+            <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#361B14]">
+                {policy.title}
+              </h2>
+              <a
+                href={policy.pdf}
+                download
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FBB13A] hover:text-[#f0a520] transition-colors mt-2"
+              >
+                <Download className="w-3.5 h-3.5" /> Download PDF
+              </a>
+            </div>
+            {policy.subtitle && (
+              <p className="text-sm text-[#361B14]/60 leading-relaxed mb-3">
+                {policy.subtitle}
+              </p>
+            )}
+            <div className="mb-8">
+              {policy.meta.map((item) => (
+                <p key={item} className="text-xs text-[#361B14]/50 leading-5">
+                  {item}
+                </p>
+              ))}
+            </div>
 
-            {termsContent.map((section, i) => (
-              <div key={i} className="mb-8">
-                <h3 className="font-heading font-bold text-lg text-[#361B14] mb-3">
-                  {section.title}
-                </h3>
-                {section.body && (
-                  <p className="text-sm text-[#361B14]/70 leading-relaxed mb-4">
-                    {section.body}
-                  </p>
-                )}
-                {section.highlight && (
-                  <div className="bg-[#FFF7E9] border-l-4 border-[#FBB13A] rounded-r-xl p-4 mb-4">
-                    {section.highlightLabel && (
-                      <p className="font-heading font-semibold text-xs text-[#FBB13A] uppercase tracking-wider mb-2">
-                        {section.highlightLabel}
-                      </p>
-                    )}
-                    <p className="text-sm text-[#361B14]/70 italic leading-relaxed">
-                      {section.highlight}
-                    </p>
-                  </div>
-                )}
-                {section.bullets && (
-                  <ul className="space-y-2">
-                    {section.bullets.map((bullet, j) => (
-                      <li key={j} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#FBB13A] flex-shrink-0 mt-2" />
-                        <span className="text-sm text-[#361B14]/70 leading-relaxed">
-                          {bullet}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {i < termsContent.length - 1 && (
+            {policy.note && (
+              <div className="bg-white/60 border-l-4 border-[#FBB13A] rounded-r-xl p-4 mb-8">
+                <p className="font-heading font-semibold text-xs text-[#FBB13A] uppercase tracking-wider mb-2">
+                  {policy.note.label}
+                </p>
+                <ul className="space-y-1">
+                  {policy.note.items.map((item) => (
+                    <li
+                      key={item}
+                      className="text-sm text-[#361B14]/70 leading-relaxed"
+                    >
+                      • {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {visibleSections.length === 0 && (
+              <p className="text-sm text-[#361B14]/60">
+                No sections in {policy.label} match “{searchQuery.trim()}”.
+              </p>
+            )}
+
+            {visibleSections.map((blocks, i) => (
+              <div key={`${policy.id}-${i}`} className="mb-8">
+                {blocks.map((block, j) => (
+                  <PolicyBlockView key={j} block={block} />
+                ))}
+                {i < visibleSections.length - 1 && (
                   <div className="border-b border-[#FFE4D4] mt-8" />
                 )}
               </div>
             ))}
           </div>
-
-          {/* Right card */}
-          <div className="lg:col-span-3">
-            <div className="sticky top-24 space-y-4">
-              <Card className="overflow-hidden">
-                <ImagePlaceholder
-                  className="h-36 rounded-b-none"
-                  label="Security image"
-                />
-                <div className="p-4 bg-[#FFE4D4]">
-                  <p className="font-heading font-semibold text-xs text-[#361B14] mb-1">
-                    Official Registry
-                  </p>
-                  <p className="text-xs text-[#361B14]/60 leading-relaxed">
-                    Verified for Enterprise Use by the Global Trust Alliance
-                    2024.
-                  </p>
-                </div>
-              </Card>
-              <Card className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Globe className="w-4 h-4 text-[#FBB13A]" />
-                  <p className="font-heading font-semibold text-xs text-[#361B14]">
-                    Global Compliance
-                  </p>
-                </div>
-                <p className="text-xs text-[#361B14]/60 leading-relaxed">
-                  Our policies align with GDPR, CCPA, and international data
-                  protection standards.
-                </p>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </Section>
-  );
-}
-
-function DocumentationCardsSection() {
-  const docs = [
-    {
-      title: "Cookie Policy",
-      desc: "Manage your tracking preferences and learn how we use cookies for performance.",
-      link: "View Details",
-    },
-    {
-      title: "Security Audit",
-      desc: "Review our latest third-party security certifications and platform hardening docs.",
-      link: "View Details",
-    },
-    {
-      title: "API Terms",
-      desc: "Developer-specific guidelines for integrating with the Leddar ecosystem.",
-      link: "View Details",
-    },
-    {
-      title: "SLA Agreement",
-      desc: "Uptime guarantees and support response time commitments for enterprise partners.",
-      link: "View Details",
-    },
-  ];
-
-  return (
-    <Section className="bg-[#FFF7E9]">
-      <Container>
-        <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#361B14] mb-8">
-          Further Documentation
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {docs.map(({ title, desc, link }) => (
-            <Card key={title} className="p-5">
-              <h4 className="font-heading font-semibold text-sm text-[#361B14] mb-2">
-                {title}
-              </h4>
-              <p className="text-xs text-[#361B14]/60 leading-relaxed mb-4">
-                {desc}
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-[#FBB13A] hover:text-[#f0a520] transition-colors"
-              >
-                {link} <ArrowRight className="w-3 h-3" />
-              </a>
-            </Card>
-          ))}
         </div>
       </Container>
     </Section>
@@ -349,13 +395,19 @@ function SupportCTASection() {
               questions regarding platform governance or data handling.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button className="px-7 py-3.5 bg-[#FBB13A] text-[#361B14] font-bold text-sm rounded-full hover:bg-[#f0a520] transition-colors">
+              <a
+                href="mailto:support@myleddar.com"
+                className="px-7 py-3.5 bg-[#FBB13A] text-[#361B14] font-bold text-sm rounded-full hover:bg-[#f0a520] transition-colors"
+              >
                 Contact Support →
-              </button>
-              <button className="px-7 py-3.5 border border-white/30 text-white font-semibold text-sm rounded-full hover:bg-white/10 transition-colors">
-                Trade Briefly →
-              </button>
+              </a>
             </div>
+            <p className="text-white/60 text-sm mt-5">
+              Or email us at{" "}
+              <span className="text-white font-medium select-all">
+                support@myleddar.com
+              </span>
+            </p>
           </div>
         </div>
       </Container>
@@ -369,7 +421,6 @@ export default function PoliciesPage() {
       <HeroSection />
       <DownloadCardsSection />
       <PolicyContentSection />
-      <DocumentationCardsSection />
       <SupportCTASection />
     </main>
   );

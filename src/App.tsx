@@ -29,12 +29,12 @@ function Layout() {
           <img
             src="/Hammer_3D.png"
             alt="Hammer"
-            className="absolute right-0 top-24 sm:top-28 w-14 sm:w-16 opacity-90 md:hidden pointer-events-none z-20"
+            className="absolute right-0 top-24 sm:top-28 lg:top-24 w-14 sm:w-16 md:w-20 lg:w-24 xl:w-32 opacity-90 pointer-events-none select-none z-20"
           />
           <img
             src="/Grinder.png"
             alt="Grinder"
-            className="absolute left-0 top-72 sm:top-80 w-16 sm:w-20 opacity-90 md:hidden pointer-events-none z-20"
+            className="absolute left-0 top-72 sm:top-80 md:top-[19rem] lg:top-[25rem] xl:top-96 w-16 sm:w-20 md:w-24 lg:w-28 xl:w-[8.5rem] opacity-90 pointer-events-none select-none z-20"
           />
         </>
       )}
