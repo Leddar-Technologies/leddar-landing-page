@@ -125,7 +125,13 @@ export default function BlogPostPage() {
               {post.shares.toLocaleString("en-US")} shares
             </span>
           </div>
-          <div className="w-16 h-px bg-[#FBB13A] mb-8" />
+          <img
+            src={post.image}
+            alt={post.title}
+            width={1600}
+            height={900}
+            className="w-full h-auto rounded-3xl shadow-[0_8px_40px_rgba(54,27,20,0.12)] mb-10"
+          />
 
           {post.blocks.map((block, i) => (
             <BlogBlockView key={i} block={block} />
@@ -153,21 +159,31 @@ export default function BlogPostPage() {
             Keep reading
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {related.map(({ slug, category, title }) => (
+            {related.map(({ slug, category, title, image }) => (
               <Link
                 key={slug}
                 to={`/blog/${slug}`}
-                className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 p-5 flex flex-col"
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col"
               >
-                <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider mb-3">
-                  {category}
-                </span>
-                <span className="font-heading font-semibold text-sm text-[#361B14] leading-6 mb-4 flex-1">
-                  {title}
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#361B14] group-hover:text-[#FBB13A] uppercase tracking-wide transition-colors">
-                  View more <ArrowRight className="w-3.5 h-3.5" />
-                </span>
+                <img
+                  src={image}
+                  alt=""
+                  width={1600}
+                  height={900}
+                  loading="lazy"
+                  className="w-full aspect-[16/9] object-cover"
+                />
+                <div className="p-5 flex flex-col flex-1">
+                  <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider mb-3">
+                    {category}
+                  </span>
+                  <span className="font-heading font-semibold text-sm text-[#361B14] leading-6 mb-4 flex-1">
+                    {title}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#361B14] group-hover:text-[#FBB13A] uppercase tracking-wide transition-colors">
+                    View more <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

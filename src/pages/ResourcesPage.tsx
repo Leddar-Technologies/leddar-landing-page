@@ -7,6 +7,7 @@ import {
   Factory,
   Store,
   Hammer,
+  BookOpen,
   type LucideIcon,
 } from "lucide-react";
 import { Section, Container, SectionLabel, Card } from "../components/ui";
@@ -24,6 +25,7 @@ const categoryIcons: Record<BlogCategory, LucideIcon> = {
   "Materials & Quality": Layers,
   "Building Your Brand": Store,
   "Craft & Artisans": Hammer,
+  "Leddar Stories": BookOpen,
 };
 
 function HeroSection() {
@@ -129,36 +131,53 @@ function LatestPublicationsSection({
         </h2>
         {filtered.length === 0 ? (
           <p className="text-sm text-[#361B14]/50 text-center py-12">
-            No resources match your search.
+            {words.length === 0 && activeCategory !== "All"
+              ? `No ${activeCategory} yet. Check back soon.`
+              : "No resources match your search."}
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filtered.map(({ slug, category, title, summary }) => {
+            {filtered.map(({ slug, category, title, summary, image }) => {
               const Icon = categoryIcons[category];
               return (
-                <Card key={slug} className="relative p-5 group flex flex-col">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-6 h-6 bg-[#FBB13A]/15 rounded-md flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-3 h-3 text-[#FBB13A]" />
-                    </div>
-                    <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider">
-                      {category}
-                    </span>
+                <Card
+                  key={slug}
+                  className="relative overflow-hidden group flex flex-col"
+                >
+                  <div className="aspect-[16/9] overflow-hidden bg-[#361B14]">
+                    <img
+                      src={image}
+                      alt=""
+                      width={1600}
+                      height={900}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <h4 className="font-heading font-semibold text-sm text-[#361B14] leading-6 mb-2">
-                    {title}
-                  </h4>
-                  <p className="text-xs text-[#361B14]/60 leading-relaxed mb-5 flex-1">
-                    {summary}
-                  </p>
-                  {/* The stretched ::after makes the whole card clickable */}
-                  <Link
-                    to={`/blog/${slug}`}
-                    aria-label={`View more: ${title}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#361B14] group-hover:text-[#FBB13A] uppercase tracking-wide transition-colors after:absolute after:inset-0 after:rounded-2xl"
-                  >
-                    View more <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-6 h-6 bg-[#FBB13A]/15 rounded-md flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-3 h-3 text-[#FBB13A]" />
+                      </div>
+                      <span className="text-xs font-semibold text-[#FBB13A] uppercase tracking-wider">
+                        {category}
+                      </span>
+                    </div>
+                    <h4 className="font-heading font-semibold text-sm text-[#361B14] leading-6 mb-2">
+                      {title}
+                    </h4>
+                    <p className="text-xs text-[#361B14]/60 leading-relaxed mb-5 flex-1">
+                      {summary}
+                    </p>
+                    {/* The stretched ::after makes the whole card clickable */}
+                    <Link
+                      to={`/blog/${slug}`}
+                      aria-label={`View more: ${title}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#361B14] group-hover:text-[#FBB13A] uppercase tracking-wide transition-colors after:absolute after:inset-0 after:rounded-2xl"
+                    >
+                      View more <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </Card>
               );
             })}
@@ -288,7 +307,10 @@ export default function ResourcesPage() {
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
       />
-      <LatestPublicationsSection query={query} activeCategory={activeCategory} />
+      <LatestPublicationsSection
+        query={query}
+        activeCategory={activeCategory}
+      />
       <VisualSeriesSection />
       <ResourceCTASection />
     </main>

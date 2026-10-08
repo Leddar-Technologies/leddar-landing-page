@@ -49,13 +49,14 @@ function HeroSection() {
         </div>
 
         {/* Photo banner */}
-        <div className="relative max-w-4xl mx-auto rounded-[30px] overflow-hidden aspect-video shadow-[0_8px_60px_rgba(0,0,0,0.12)]">
+        <div className="relative max-w-4xl mx-auto rounded-[30px] overflow-hidden shadow-[0_8px_60px_rgba(0,0,0,0.12)] ring-1 ring-[#361B14]/10">
           <img
-            src="/about-img.png"
-            alt="Team collaborating"
-            className="w-full h-full object-contain bg-[#2a1611]"
+            src="/artisan-dashboard.jpg"
+            alt="The Leddar artisan dashboard, showing jobs, verification steps and earnings"
+            width={1600}
+            height={798}
+            className="w-full h-auto"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#361B14]/50 to-transparent" />
         </div>
 
         {/* Aligned liquid-glass stat pills — just beneath the banner */}

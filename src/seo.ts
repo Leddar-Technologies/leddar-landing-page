@@ -85,6 +85,7 @@ function structuredData(pathname: string) {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: post.title,
+      image: `${SITE_URL}${post.image}`,
       description: post.summary,
       articleSection: post.category,
       author: { "@type": "Person", name: post.author },
@@ -109,6 +110,9 @@ export function renderHeadTags(pathname: string) {
   const { title, description } = getPageMeta(pathname);
   const url = canonicalUrl(pathname);
   const data = structuredData(pathname);
+  const post = findPost(pathname);
+  const image = post ? `${SITE_URL}${post.image}` : SHARE_IMAGE;
+  const [width, height] = post ? [1600, 900] : [1200, 630];
   const tags = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
@@ -118,11 +122,11 @@ export function renderHeadTags(pathname: string) {
     `<meta property="og:title" content="${escapeHtml(title)}" />`,
     `<meta property="og:description" content="${escapeHtml(description)}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${SHARE_IMAGE}" />`,
-    `<meta property="og:image:width" content="1200" />`,
-    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="${width}" />`,
+    `<meta property="og:image:height" content="${height}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
-    `<meta name="twitter:image" content="${SHARE_IMAGE}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
   ];
   if (data)
     tags.push(

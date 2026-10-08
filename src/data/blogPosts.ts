@@ -3,6 +3,7 @@ export const blogCategories = [
   "Materials & Quality",
   "Building Your Brand",
   "Craft & Artisans",
+  "Leddar Stories",
 ] as const;
 
 export type BlogCategory = (typeof blogCategories)[number];
@@ -16,6 +17,8 @@ export type BlogPost = {
   category: BlogCategory;
   title: string;
   author: string;
+  /* 1600x900 cover image, shown on the Resources card, the post page and link previews */
+  image: string;
   /* Placeholder counts until views, likes and shares are tracked by the backend */
   views: number;
   likes: number;
@@ -62,6 +65,7 @@ const usingLeddar: BlogBlock[] = [
 export const blogPosts: BlogPost[] = [
   {
     slug: "footwear-manufacturer-nigeria",
+    image: "/images/blog/footwear-manufacturer-nigeria.jpg",
     author: defaultAuthor,
     views: 1284,
     likes: 96,
@@ -119,6 +123,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "start-footwear-brand-nigeria",
+    image: "/images/blog/start-footwear-brand-nigeria.jpg",
     author: defaultAuthor,
     views: 962,
     likes: 74,
@@ -164,6 +169,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "shoe-manufacturing-cost-nigeria",
+    image: "/images/blog/shoe-manufacturing-cost-nigeria.jpg",
     author: defaultAuthor,
     views: 1547,
     likes: 128,
@@ -209,6 +215,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "find-manufacturer-shoe-leather-brand",
+    image: "/images/blog/find-manufacturer-shoe-leather-brand.jpg",
     author: defaultAuthor,
     views: 731,
     likes: 58,
@@ -255,6 +262,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "best-leather-for-shoes",
+    image: "/images/blog/best-leather-for-shoes.jpg",
     author: defaultAuthor,
     views: 618,
     likes: 49,
@@ -307,6 +315,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "footwear-moq-explained",
+    image: "/images/blog/footwear-moq-explained.jpg",
     author: defaultAuthor,
     views: 845,
     likes: 67,
@@ -354,6 +363,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "footwear-tech-pack-production-brief",
+    image: "/images/blog/footwear-tech-pack-production-brief.jpg",
     author: defaultAuthor,
     views: 502,
     likes: 38,
@@ -401,6 +411,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "shoe-makers-lagos-for-brands",
+    image: "/images/blog/shoe-makers-lagos-for-brands.jpg",
     author: defaultAuthor,
     views: 1096,
     likes: 85,

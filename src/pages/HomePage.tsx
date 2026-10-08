@@ -246,7 +246,7 @@ function EscrowSection() {
             </div>
 
             <a
-              href="https://artisan.myleddar.com/signup"
+              href="https://brand.myleddar.com/signup"
               target="_blank"
               rel="noopener noreferrer"
             >
