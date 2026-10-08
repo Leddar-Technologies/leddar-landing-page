@@ -10,7 +10,7 @@ import {
   BookOpen,
   type LucideIcon,
 } from "lucide-react";
-import { Section, Container, SectionLabel, Card } from "../components/ui";
+import { Section, Container, Card } from "../components/ui";
 import {
   blogCategories,
   blogPosts,
@@ -188,6 +188,10 @@ function LatestPublicationsSection({
   );
 }
 
+/* "The Visual Series" section is hidden for now. To bring it back, remove this
+   comment wrapper, re-add SectionLabel to the ../components/ui import and
+   restore <VisualSeriesSection /> in ResourcesPage below.
+
 const visualSeries = [
   {
     title: "The Trust Framework",
@@ -252,6 +256,7 @@ function VisualSeriesSection() {
     </Section>
   );
 }
+*/
 
 function ResourceCTASection() {
   return (
@@ -311,7 +316,7 @@ export default function ResourcesPage() {
         query={query}
         activeCategory={activeCategory}
       />
-      <VisualSeriesSection />
+      {/* <VisualSeriesSection /> */}
       <ResourceCTASection />
     </main>
   );

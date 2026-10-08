@@ -1179,10 +1179,10 @@ export const policies: Policy[] = [
         "items": [
           "LEDDAR",
           "Leddar Systems Limited",
-          "[Insert Address]",
-          "[Insert Email]",
-          "[Insert Support Email]",
-          "[Insert Phone]"
+          "345 odusami street Ogba Lagos",
+          "Alfred.j@myleddar.com",
+          "Support@myleddar.com",
+          "+2349067688122"
         ]
       }
     ]
